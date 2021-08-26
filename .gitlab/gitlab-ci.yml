@@ -27,7 +27,5 @@ build:
       exit 1
     - curl -v -o /dev/null http://localhost
     - curl  -vk -o /dev/null https://localhost
-    - |
-      docker-compose exec -T php bin/console -e test doctrine:database:create
-      docker-compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
+    - docker image ls
     - docker-compose exec -T php ./vendor/bin/phpunit
