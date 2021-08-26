@@ -10,5 +10,4 @@ image: tmaier/docker-compose:latest
 build:
     stage: build
     script:
-        - docker login -u gitlab-deploy-token -p $CI_DEPLOY_TOKEN $CI_REGISTRY
-        - docker-compose pull
+        - ./tool build
