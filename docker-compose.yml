@@ -3,6 +3,7 @@ version: "3.4"
 services:
   php:
     container_name: yawik.php
+    image: gitlab.cross-solution.de:5050/toni/yawik-php
     build:
       context: ./api
       target: yawik_php
@@ -19,6 +20,7 @@ services:
 
   pwa:
     container_name: yawik.pwa
+    image: gitlab.cross-solution.de:5050/toni/yawik-pwa
     build:
       context: ./pwa
       target: yawik_pwa_prod
