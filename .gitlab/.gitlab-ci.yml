@@ -1,13 +1,14 @@
+image: docker:stable
 stages:
     - test
     - build
     - deploy
-        
+
+services:
+    - docker:dind
+
 build:
     stage: build
-    image: docker:stable
-    service:
-        - docker:dind
     script:
         - docker login -u gitlab-ci-token -p $CI_DEPLOY_TOKEN $CI_REGISTRY
         - ./tool build
