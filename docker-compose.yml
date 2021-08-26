@@ -30,6 +30,7 @@ services:
 
   caddy:
     container_name: yawik.caddy
+    image: gitlab.cross-solution.de:5050/toni/yawik-caddy
     build:
       context: api/
       target: yawik_caddy
