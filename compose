@@ -62,6 +62,14 @@ if [ $# -gt 0 ]; then
         echo -e "${WHITE}Running api-platform in development mode${NC}"
         docker-compose ${COMPOSE_FILE} up "${@: 2}"
         exit 0
+    elif [[ "$1" == "require" || "$1" == "req" ]]; then
+        docker-compose exec php composer require "${@: 2}"
+    elif [ "$1" == "remove" ]; then
+        docker-compose exec php composer remove "${@: 2}"
+    elif [ "$1" == "composer" ]; then
+        docker-compose exec php "${@: 1}"
+    elif [[ "$1" == "sf" || "$1" == "symfony" ]]; then
+        docker-compose exec php bin/console "${@: 2}"
     else
         docker-compose "$@"
     fi

@@ -30,7 +30,7 @@ FROM yawik_pwa_common AS yawik_pwa_dev
 ENV API_PLATFORM_CLIENT_GENERATOR_OUTPUT .
 RUN yarn global add @api-platform/client-generator
 
-CMD ["yarn", "dev"]
+CMD ["yarn", "start"]
 
 
 # "build" stage
