@@ -10,5 +10,6 @@ services:
 build:
     stage: build
     script:
+        - echo $CI_REGISTRY
         - docker login -u gitlab-deploy-token -p $CI_DEPLOY_TOKEN $CI_REGISTRY
         - ./tool build
