@@ -3,7 +3,7 @@ version: "3.4"
 services:
   php:
     container_name: yawik.php
-    image: gitlab.cross-solution.de:5050/toni/yawik-php
+    image: registry.gitlab.com/kilip/yawik/php
     build:
       context: ./api
       target: yawik_php
@@ -20,7 +20,7 @@ services:
 
   pwa:
     container_name: yawik.pwa
-    image: gitlab.cross-solution.de:5050/toni/yawik-pwa
+    image: registry.gitlab.com/kilip/yawik/pwa
     build:
       context: ./pwa
       target: yawik_pwa_prod
@@ -30,7 +30,7 @@ services:
 
   caddy:
     container_name: yawik.caddy
-    image: gitlab.cross-solution.de:5050/toni/yawik-caddy
+    image: registry.gitlab.com/kilip/yawik/caddy
     build:
       context: api/
       target: yawik_caddy
