@@ -1,11 +1,11 @@
-image: docker:stable
 stages:
     - test
     - build
     - deploy
-
 services:
     - docker:dind
+
+image: tmaier/docker-compose:latest
 
 build:
     stage: build
