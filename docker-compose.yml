@@ -20,13 +20,15 @@ services:
 
   pwa:
     container_name: yawik.pwa
-    image: registry.gitlab.com/kilip/yawik/pwa
+    image: "registry.gitlab.com/kilip/yawik/${FRONTEND:-nuxt}"
     build:
-      context: ./pwa
-      target: yawik_pwa_prod
+      context: "${FRONTEND:-nuxt}"
+      target: "yawik_${FRONTEND:-nuxt}_prod"
     environment:
       API_PLATFORM_CLIENT_GENERATOR_ENTRYPOINT: http://caddy
       NEXT_PUBLIC_ENTRYPOINT: http://caddy
+    ports:
+      - "3000:3000"
 
   caddy:
     container_name: yawik.caddy

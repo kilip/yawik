@@ -6,9 +6,10 @@
 ARG NODE_VERSION=14
 
 # "common" stage
-FROM node:${NODE_VERSION}-alpine AS yawik_pwa_common
+FROM node:${NODE_VERSION}-alpine AS yawik_nuxt_common
 
 EXPOSE 3000
+EXPOSE 8080
 
 WORKDIR /usr/src/pwa
 
@@ -25,17 +26,17 @@ VOLUME /usr/src/pwa/node_modules
 
 # "development" stage
 # depends on the "common" stage above
-FROM yawik_pwa_common AS yawik_pwa_dev
+FROM yawik_nuxt_common AS yawik_nuxt_dev
 
 ENV API_PLATFORM_CLIENT_GENERATOR_OUTPUT .
 RUN yarn global add @api-platform/client-generator
 
-CMD ["yarn", "start"]
+CMD ["yarn", "dev"]
 
 
 # "build" stage
 # depends on the "common" stage above
-FROM yawik_pwa_common AS yawik_pwa_prod
+FROM yawik_nuxt_common AS yawik_nuxt_prod
 
 ENV NODE_ENV production
 ARG NEXT_PUBLIC_ENTRYPOINT

@@ -23,6 +23,7 @@ log
     || {path} == "/manifest.json"
     || {path} == "/robots.txt"
     || {path}.startsWith("/_next")
+    || {path}.startsWith("/_nuxt")
     || {path}.startsWith("/sitemap")`
 
 route {
