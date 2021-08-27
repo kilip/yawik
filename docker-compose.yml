@@ -3,6 +3,7 @@ version: "3.4"
 services:
   php:
     container_name: yawik.php
+    image: registry.gitlab.com/kilip/yawik/php
     build:
       context: ./api
       target: yawik_php
@@ -19,15 +20,19 @@ services:
 
   pwa:
     container_name: yawik.pwa
+    image: "registry.gitlab.com/kilip/yawik/${FRONTEND:-nuxt}"
     build:
-      context: ./pwa
-      target: yawik_pwa_prod
+      context: "${FRONTEND:-nuxt}"
+      target: "yawik_${FRONTEND:-nuxt}_prod"
     environment:
       API_PLATFORM_CLIENT_GENERATOR_ENTRYPOINT: http://caddy
       NEXT_PUBLIC_ENTRYPOINT: http://caddy
+    ports:
+      - "3000:3000"
 
   caddy:
     container_name: yawik.caddy
+    image: registry.gitlab.com/kilip/yawik/caddy
     build:
       context: api/
       target: yawik_caddy
@@ -61,12 +66,15 @@ services:
   database:
     container_name: yawik.database
     image: mongo
-    #environment:
-      #- POSTGRES_DB=api
-      #- POSTGRES_PASSWORD=!ChangeMe!
-      #- POSTGRES_USER=api-platform
+    environment:
+      - MONGO_INITDB_DATABASE=api
+      - MONGO_INITDB_ROOT_USERNAME=api-platform
+      - MONGO_INITDB_ROOT_PASSWORD=api-platform
     volumes:
-      - ./var/database:/data/db:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      - ./var/mongo/data:/var/lib/mongodb/data:rw
+    ports:
+      - "27017:27017"
 
 volumes:
   php_socket:
