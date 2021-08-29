@@ -7,6 +7,9 @@ on:
     branches: ['master']
   workflow_dispatch: ~
 
+env:
+  DOYO_CI: 1
+
 jobs:
   tests:
     name: Tests
