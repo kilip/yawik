@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
-  pull_request: ~
+    branches: ['master']
+  pull_request:
+    branches: ['master']
   workflow_dispatch: ~
 
 jobs:
@@ -15,9 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Pull images
-        run: docker-compose pull --ignore-pull-failures || true
+        run: ./dev pull --ignore-pull-failures || true
       - name: Start services
-        run: docker-compose up --build -d
+        run: ./dev boot --build -d
       - name: Wait for services
         run: |
           while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose ps -q php)")"; do
@@ -25,8 +25,8 @@ jobs:
               starting) sleep 1;;
               healthy) exit 0;;
               unhealthy)
-                docker-compose ps
-                docker-compose logs
+                ./dev ps
+                ./dev logs
                 exit 1
               ;;
             esac
@@ -38,8 +38,8 @@ jobs:
         run: curl  -vk -o /dev/null https://localhost
       - name: Create test database
         run: |
-          docker-compose exec -T php bin/console -e test doctrine:database:create
-          docker-compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
+          ./dev symfony -e test doctrine:database:create
+          ./dev symfony -e test doctrine:migrations:migrate --no-interaction
       - name: PHPUnit
         run: docker-compose exec -T php bin/phpunit
       - name: Doctrine Schema Validator
