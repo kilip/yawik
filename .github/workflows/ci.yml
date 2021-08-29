@@ -17,7 +17,7 @@ jobs:
       - name: Pull images
         run: ./dev pull --ignore-pull-failures || true
       - name: Start services
-        run: ./dev boot --build -d
+        run: ./dev boot -d
       - name: Wait for services
         run: |
           while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(./dev ps -q php)")"; do
