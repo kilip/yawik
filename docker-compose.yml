@@ -3,7 +3,7 @@ version: "3.4"
 services:
   php:
     container_name: yawik.php
-    image: registry.gitlab.com/kilip/yawik/php
+    image: ghcr.io/kilip/yawik/php
     build:
       context: ./api
       target: yawik_php
@@ -20,7 +20,7 @@ services:
 
   pwa:
     container_name: yawik.pwa
-    image: "registry.gitlab.com/kilip/yawik/${FRONTEND:-nuxt}"
+    image: ghcr.io/kilip/yawik/${FRONTEND:-nuxt}
     build:
       context: "${FRONTEND:-nuxt}"
       target: "yawik_${FRONTEND:-nuxt}_prod"
@@ -32,7 +32,7 @@ services:
 
   caddy:
     container_name: yawik.caddy
-    image: registry.gitlab.com/kilip/yawik/caddy
+    image: ghcr.io/kilip/yawik/caddy
     build:
       context: api/
       target: yawik_caddy
