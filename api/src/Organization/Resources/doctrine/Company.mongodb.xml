@@ -1,0 +1,9 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <document
+        collection="companies"
+        name="Yawik\Organization\Model\Company"
+    >
+        <id/>
+        <field name="name" type="string"/>
+    </document>
+</doctrine-mongo-mapping>

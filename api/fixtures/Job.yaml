@@ -1,0 +1,10 @@
+Yawik\Organization\Model\Company:
+  company_{1..50}:
+    name: <company()>,<companySuffix()>
+
+Yawik\Job\Model\Job:
+  jobs_{1..100}:
+    title: <name()>
+    company: '@company_*'
+    contactEmail: <freeEmail()>
+    language: <randomElement(['en','de'])>

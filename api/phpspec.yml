@@ -1,0 +1,4 @@
+suites:
+  yawik:
+    namespace: Yawik
+    psr4_prefix: Yawik

@@ -1,0 +1,9 @@
+services:
+  Yawik\Resource\Fixtures\FixtureLoader:
+    arguments:
+      $loader: '@fidry_alice_data_fixtures.doctrine_mongodb.loader'
+      $fixturesDir: '%yawik.resource.fixtures_dir%'
+  Yawik\Resource\Command\LoadFixtureCommand:
+    tags: ['console.command']
+    arguments:
+      $loader: '@Yawik\Resource\Fixtures\FixtureLoader'

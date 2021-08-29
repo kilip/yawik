@@ -1,0 +1,8 @@
+Yawik\Organization\Model\Company:
+  company_{1..5}:
+    name: <company()>
+
+Yawik\Job\Model\Job:
+  jobs_{1..5}:
+    title: <name()>
+    company: '@company*'

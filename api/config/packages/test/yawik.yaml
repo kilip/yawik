@@ -1,0 +1,5 @@
+parameters:
+  yawik.resource.fixtures_dir: "%kernel.project_dir%/tests/fixtures"
+
+doctrine_mongodb:
+  default_database: '%env(resolve:MONGODB_DB)%_test'

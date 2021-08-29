@@ -58,6 +58,9 @@ if [ $# -gt 0 ]; then
     if [ "$1" == "build" ]; then
         echo -e "${WHITE}Build container images${NC}"
         docker-compose $COMPOSE_FILE build "${@: 2}"
+    elif [ "$1" == "boot" ]; then
+        echo -e "${WHITE}Booting up yawik ...${NC}"
+        docker-compose ${COMPOSE_FILE} up --build "${@: 2}"
     elif [ "$1" == "up" ]; then
         echo -e "${WHITE}Running api-platform in development mode${NC}"
         docker-compose ${COMPOSE_FILE} up "${@: 2}"
@@ -69,6 +72,18 @@ if [ $# -gt 0 ]; then
     elif [ "$1" == "composer" ]; then
         docker-compose exec php "${@: 1}"
     elif [[ "$1" == "sf" || "$1" == "symfony" ]]; then
+        docker-compose exec php bin/console "${@: 2}"
+    elif [[ "$1" == "psalm" ]]; then
+        docker-compose exec php ./vendor/bin/psalm "${@: 2}"
+    elif [[ "$1" == "csfix" ]]; then
+        docker-compose exec php ./vendor/bin/php-cs-fixer "${@: 2}"
+    elif [[ "$1" == "phpspec" ]]; then
+        docker-compose exec php ./vendor/bin/phpspec "${@: 2}"
+    elif [[ "$1" == "phpunit" ]]; then
+        docker-compose exec php ./vendor/bin/phpunit "${@: 2}"
+    elif [[ "$1" == "cache:clear" ]]; then
+        docker-compose exec php bin/console cache:clear "${@: 2}"
+    elif [[ "$1" == "doctrine" ]]; then
         docker-compose exec php bin/console "${@: 2}"
     else
         docker-compose "$@"

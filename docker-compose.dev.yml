@@ -10,13 +10,14 @@ services:
       # - ./api/var:/srv/api/var:rw
     environment:
       APP_ENV: dev
+      MONGODB_URL: mongodb://yawik:yawik@database:27017
 
   pwa:
     build:
       context: "${FRONTEND:-nuxt}"
       target: "yawik_${FRONTEND:-nuxt}_dev"
     volumes:
-      - ./next:/usr/src/next:rw,cached
+      - "./${FRONTEND:-nuxt}:/usr/src/pwa:rw,cached"
   caddy:
     volumes:
       - ./api/docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
@@ -25,7 +26,6 @@ services:
       MERCURE_EXTRA_DIRECTIVES: demo /srv/mercure-assets/
 
   database:
-    ports:
-      - target: 5432
-        published: 5432
-        protocol: tcp
+    volumes:
+      - ./var/mongo/data:/var/lib/mongodb/data:rw
+      - ./docker/mongo:/dump:rw

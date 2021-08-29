@@ -28,10 +28,10 @@ VOLUME /usr/src/pwa/node_modules
 # depends on the "common" stage above
 FROM yawik_nuxt_common AS yawik_nuxt_dev
 
-ENV API_PLATFORM_CLIENT_GENERATOR_OUTPUT .
-RUN yarn global add @api-platform/client-generator
+#ENV API_PLATFORM_CLIENT_GENERATOR_OUTPUT .
+#RUN yarn global add @api-platform/client-generator
 
-CMD ["yarn", "dev"]
+CMD ["yarn", "start"]
 
 
 # "build" stage
@@ -44,4 +44,4 @@ ARG NEXT_PUBLIC_ENTRYPOINT
 RUN set -eux; \
 	yarn build
 
-CMD ["yarn", "start"]
+CMD ["yarn", "build"]

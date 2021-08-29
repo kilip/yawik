@@ -25,10 +25,10 @@ services:
       context: "${FRONTEND:-nuxt}"
       target: "yawik_${FRONTEND:-nuxt}_prod"
     environment:
-      API_PLATFORM_CLIENT_GENERATOR_ENTRYPOINT: http://caddy
       NEXT_PUBLIC_ENTRYPOINT: http://caddy
     ports:
       - "3000:3000"
+      - "8080:8080"
 
   caddy:
     container_name: yawik.caddy
@@ -47,8 +47,8 @@ services:
     restart: unless-stopped
     volumes:
       - php_socket:/var/run/php
-      - caddy_data:/data
-      - caddy_config:/config
+      - ./var/caddy/data:/data
+      - ./var/caddy/config:/config
     ports:
       # HTTP
       - target: 80
@@ -67,9 +67,9 @@ services:
     container_name: yawik.database
     image: mongo
     environment:
-      - MONGO_INITDB_DATABASE=api
-      - MONGO_INITDB_ROOT_USERNAME=api-platform
-      - MONGO_INITDB_ROOT_PASSWORD=api-platform
+      - MONGO_INITDB_DATABASE=yawik
+      - MONGO_INITDB_ROOT_USERNAME=yawik
+      - MONGO_INITDB_ROOT_PASSWORD=yawik
     volumes:
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       - ./var/mongo/data:/var/lib/mongodb/data:rw
@@ -78,5 +78,3 @@ services:
 
 volumes:
   php_socket:
-  caddy_data:
-  caddy_config:

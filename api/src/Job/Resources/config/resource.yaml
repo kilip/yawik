@@ -1,0 +1,17 @@
+doctrine_mongodb:
+  document_managers:
+    default:
+      mappings:
+        job:
+          is_bundle: false
+          type: xml
+          dir: '%yawik.job.base_path%/Resources/doctrine'
+          prefix: 'Yawik\Job\Model'
+api_platform:
+  mapping:
+    paths: ['%yawik.job.base_path%/Resources/api']
+
+framework:
+  serializer:
+    mapping:
+      paths: ['%yawik.job.base_path%/Resources/serializer']
