@@ -35,11 +35,9 @@ if [ -z "${DOYO_CI}" ]; then
     export DOYO_CI=0;
 fi
 
-if [[ 1 == ${DOYO_CI} ]]; then
+if [[ 1 == "${DOYO_CI}" ]]; then
     export EXEC_CMD="exec -T"
 fi
-
-echo ${EXEC_CMD}
 
 # Function that outputs Sail is not running...
 function yawik_is_not_running {
@@ -71,31 +69,31 @@ if [ $# -gt 0 ]; then
         docker-compose $COMPOSE_FILE build "${@: 2}"
     elif [ "$1" == "boot" ]; then
         echo -e "${WHITE}Booting up yawik ...${NC}"
-        docker-compose ${COMPOSE_FILE} up --build "${@: 2}"
+        docker-compose "${COMPOSE_FILE}" up --build "${@: 2}"
     elif [ "$1" == "up" ]; then
         echo -e "${WHITE}Running api-platform in development mode${NC}"
-        docker-compose ${COMPOSE_FILE} up "${@: 2}"
+        docker-compose "${COMPOSE_FILE}" up "${@: 2}"
         exit 0
     elif [[ "$1" == "require" || "$1" == "req" ]]; then
-        docker-compose ${EXEC_CMD} php composer require "${@: 2}"
+        docker-compose "$EXEC_CMD" php composer require "${@: 2}"
     elif [ "$1" == "remove" ]; then
-        docker-compose ${EXEC_CMD} php composer remove "${@: 2}"
+        docker-compose "$EXEC_CMD" php composer remove "${@: 2}"
     elif [ "$1" == "composer" ]; then
-        docker-compose ${EXEC_CMD} php "${@: 1}"
+        docker-compose "$EXEC_CMD" php "${@: 1}"
     elif [[ "$1" == "sf" || "$1" == "symfony" ]]; then
-        docker-compose ${EXEC_CMD} php bin/console "${@: 2}"
+        docker-compose "$EXEC_CMD" php bin/console "${@: 2}"
     elif [[ "$1" == "psalm" ]]; then
-        docker-compose ${EXEC_CMD} php ./vendor/bin/psalm "${@: 2}"
+        docker-compose "$EXEC_CMD" php ./vendor/bin/psalm "${@: 2}"
     elif [[ "$1" == "csfix" ]]; then
-        docker-compose ${EXEC_CMD} php ./vendor/bin/php-cs-fixer "${@: 2}"
+        docker-compose "$EXEC_CMD" php ./vendor/bin/php-cs-fixer "${@: 2}"
     elif [[ "$1" == "phpspec" ]]; then
-        docker-compose ${EXEC_CMD} php ./vendor/bin/phpspec "${@: 2}"
+        docker-compose "$EXEC_CMD" php ./vendor/bin/phpspec "${@: 2}"
     elif [[ "$1" == "phpunit" ]]; then
         docker-compose ${EXEC_CMD} php ./vendor/bin/phpunit "${@: 2}"
     elif [[ "$1" == "cache:clear" ]]; then
-        docker-compose ${EXEC_CMD} php bin/console cache:clear "${@: 2}"
+        docker-compose "$EXEC_CMD" php bin/console cache:clear "${@: 2}"
     elif [[ "$1" == "doctrine" ]]; then
-        docker-compose ${EXEC_CMD} php bin/console "${@: 2}"
+        docker-compose "$EXEC_CMD" php bin/console "${@: 2}"
     else
         docker-compose "$@"
     fi
