@@ -69,11 +69,10 @@ if [ $# -gt 0 ]; then
         docker-compose $COMPOSE_FILE build "${@: 2}"
     elif [ "$1" == "boot" ]; then
         echo -e "${WHITE}Booting up yawik ...${NC}"
-        docker-compose "${COMPOSE_FILE}" up --build "${@: 2}"
+        docker-compose ${COMPOSE_FILE} up --build "${@: 2}"
     elif [ "$1" == "up" ]; then
         echo -e "${WHITE}Running api-platform in development mode${NC}"
-        docker-compose "${COMPOSE_FILE}" up "${@: 2}"
-        exit 0
+        docker-compose ${COMPOSE_FILE} up "${@: 2}"
     elif [[ "$1" == "require" || "$1" == "req" ]]; then
         docker-compose "$EXEC_CMD" php composer require "${@: 2}"
     elif [ "$1" == "remove" ]; then
