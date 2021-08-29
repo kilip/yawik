@@ -61,7 +61,7 @@ if [ -f ./.env ]; then
 fi
 
 # start handling command args
-COMPOSE_FILE="-f ./docker-compose.yml -f ./docker-compose.${API_PLATFORM_ENV}.yml"
+COMPOSE_FILE="-f docker-compose.yml -f docker-compose.${API_PLATFORM_ENV}.yml"
 
 if [ $# -gt 0 ]; then
     if [ "$1" == "build" ]; then

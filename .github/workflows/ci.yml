@@ -14,8 +14,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Pull images
-        run: ./dev pull --ignore-pull-failures || true
       - name: Start services
         run: ./dev boot -d
       - name: Wait for services
