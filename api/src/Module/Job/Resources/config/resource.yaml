@@ -7,6 +7,8 @@ doctrine_mongodb:
           type: xml
           dir: '%yawik.job.base_path%/Resources/doctrine'
           prefix: 'Yawik\Component\Job\Model'
+  resolve_target_documents:
+    Yawik\Component\Model\JobInterface: Yawik\Component\Job\Model\Job
 
 api_platform:
   mapping:
@@ -16,3 +18,10 @@ framework:
   serializer:
     mapping:
       paths: ['%yawik.job.base_path%/Resources/serializer']
+
+
+services:
+  Yawik\Module\Job\DataProvider\JobCollectionDataProvider:
+    arguments:
+      $registry: '@doctrine_mongodb'
+      $extensions: !tagged api_platform.doctrine_mongodb.odm.aggregation_extension.collection

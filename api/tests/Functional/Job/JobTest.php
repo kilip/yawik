@@ -17,7 +17,7 @@ use Yawik\Testing\ApiTestCase;
 
 /**
  * @covers \Yawik\Component\Job\Model\Job
- * @covers \Yawik\Component\Organization\Model\Company
+ * @covers \Yawik\Module\Job\DataProvider\JobCollectionDataProvider
  */
 class JobTest extends ApiTestCase
 {
@@ -28,5 +28,12 @@ class JobTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $json = $response->toArray();
         $this->assertCount(5, $json);
+    }
+
+    public function test_list_active_jobs()
+    {
+        $response = $this->get('/jobs/active');
+        $this->assertResponseIsSuccessful();
+        $this->assertCount(5, $response->toArray());
     }
 }

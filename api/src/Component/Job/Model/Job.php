@@ -13,14 +13,11 @@ declare(strict_types=1);
 
 namespace Yawik\Component\Job\Model;
 
-use Symfony\Component\Serializer\Annotation\Groups;
-use Yawik\Component\Organization\Model\Company;
 use Yawik\Component\Organization\Model\Organization;
 use Yawik\Component\User\Model\UserInterface;
-use Yawik\Component\Resource\Model\ResourceInterface;
 use Yawik\Component\Resource\Model\ResourceTrait;
 
-class Job implements ResourceInterface
+class Job implements JobInterface
 {
     use ResourceTrait;
 

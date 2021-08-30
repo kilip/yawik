@@ -23,13 +23,8 @@ class History
     protected StatusInterface $status;
     protected string $message;
 
-    public function __construct(
-        StatusInterface $status,
-        string $message = '[System]'
-    )
+    public function __construct()
     {
-        $this->setStatus($status);
-        $this->setMessage($message);
         $this->setDate(new \DateTimeImmutable());
     }
 

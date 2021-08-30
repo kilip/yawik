@@ -19,11 +19,6 @@ class Status implements StatusInterface
 {
     protected string $name;
 
-    public function __construct(string $status = self::CREATED)
-    {
-        $this->name = $status;
-    }
-
     /**
      * @return string
      */
