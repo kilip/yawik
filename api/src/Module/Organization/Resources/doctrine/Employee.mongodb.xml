@@ -1,0 +1,16 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document name="Yawik\Component\Organization\Model\Employee">
+        <reference-one
+            field="user"
+            target-document="Yawik\Component\User\Model\UserInterface"
+            store-as="id"
+        />
+        <embed-one
+            field="permissions"
+            target-document="Yawik\Component\Organization\Model\EmployeePermissionInterface"
+            nullable="true"
+        />
+        <field name="role" type="string"/>
+        <field name="status" type="string"/>
+    </embedded-document>
+</doctrine-mongo-mapping>

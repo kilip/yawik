@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace spec\Yawik\Job;
 
 use PhpSpec\ObjectBehavior;
-use Yawik\Core\ModuleInterface;
-use Yawik\Job\JobModule;
+use Yawik\Module\Core\ModuleInterface;
+use Yawik\Module\Job\JobModule;
 
 /**
- * @covers \Yawik\Job\JobModule
+ * @covers \Yawik\Module\Job\JobModule
  */
 class JobModuleSpec extends ObjectBehavior
 {

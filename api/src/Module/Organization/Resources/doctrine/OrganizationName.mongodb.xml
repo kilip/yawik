@@ -1,0 +1,8 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <document name="Yawik\Component\Organization\Model\OrganizationName">
+        <id/>
+        <field name="name" type="string"/>
+        <field name="ranking" type="int"/>
+        <field name="rankingByCompany" type="int"/>
+    </document>
+</doctrine-mongo-mapping>

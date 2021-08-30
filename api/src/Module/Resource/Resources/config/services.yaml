@@ -1,0 +1,13 @@
+services:
+  Yawik\Module\Resource\Fixtures\FixtureLoader:
+    arguments:
+      $loader: '@fidry_alice_data_fixtures.doctrine_mongodb.loader'
+      $fixturesDir: '%yawik.resource.fixtures_dir%'
+  Yawik\Module\Resource\Command\LoadFixtureCommand:
+    tags: ['console.command']
+    arguments:
+      $loader: '@Yawik\Module\Resource\Fixtures\FixtureLoader'
+
+doctrine_mongodb:
+  types:
+    tz_date: Yawik\Module\Resource\Doctrine\TimezoneAwareDate

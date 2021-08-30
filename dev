@@ -90,6 +90,8 @@ if [ $# -gt 0 ]; then
         docker-compose $EXEC_CMD php ./vendor/bin/phpspec "${@: 2}"
     elif [[ "$1" == "phpunit" ]]; then
         docker-compose $EXEC_CMD php ./vendor/bin/phpunit "${@: 2}"
+    elif [[ "$1" == "behat" ]]; then
+        docker-compose $EXEC_CMD php ./vendor/bin/behat "${@: 2}"
     elif [[ "$1" == "cache:clear" ]]; then
         docker-compose $EXEC_CMD php bin/console cache:clear "${@: 2}"
     elif [[ "$1" == "doctrine" ]]; then

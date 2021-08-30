@@ -16,8 +16,8 @@ namespace Yawik\Tests\Functional\Job;
 use Yawik\Testing\ApiTestCase;
 
 /**
- * @covers \Yawik\Job\Model\Job
- * @covers \Yawik\Organization\Model\Company
+ * @covers \Yawik\Component\Job\Model\Job
+ * @covers \Yawik\Component\Organization\Model\Company
  */
 class JobTest extends ApiTestCase
 {

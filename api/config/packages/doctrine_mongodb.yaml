@@ -6,4 +6,4 @@ doctrine_mongodb:
       server: '%env(resolve:MONGODB_URL)%'
       options: {}
   default_database: '%env(resolve:MONGODB_DB)%'
-  #fixture_loader: Yawik\Resource\Fixtures\FixtureLoader
+  #fixture_loader: Yawik\Module\Resource\Fixtures\FixtureLoader

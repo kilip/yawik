@@ -12,6 +12,8 @@ services:
     environment:
       APP_ENV: dev
       MONGODB_URL: mongodb://yawik:yawik@database:27017
+    ports:
+      - "9003:9003"
 
   pwa:
     image: ghcr.io/kilip/yawik/${FRONTEND:-nuxt}-dev

@@ -1,0 +1,7 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document name="Yawik\Component\Organization\Model\WorkflowSettings">
+        <field name="acceptApplicationByDepartmentManager" type="boolean"/>
+        <field name="assignDepartmentManagersToJobs" type="boolean"/>
+        <field name="acceptApplicationByRecruiters" type="boolean"/>
+    </embedded-document>
+</doctrine-mongo-mapping>

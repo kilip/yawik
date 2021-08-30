@@ -1,0 +1,6 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document
+        name="Yawik\Component\Job\Model\Status"
+    >
+    </embedded-document>
+</doctrine-mongo-mapping>

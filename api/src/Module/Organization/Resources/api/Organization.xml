@@ -1,0 +1,5 @@
+<resources xmlns="https://api-platform.com/schema/metadata">
+    <resource class="Yawik\Component\Organization\Model\Organization">
+
+    </resource>
+</resources>

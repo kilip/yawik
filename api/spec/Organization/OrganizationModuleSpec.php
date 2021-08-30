@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace spec\Yawik\Organization;
 
 use PhpSpec\ObjectBehavior;
-use Yawik\Core\ModuleInterface;
-use Yawik\Organization\OrganizationModule;
+use Yawik\Module\Core\ModuleInterface;
+use Yawik\Module\Organization\OrganizationModule;
 
 class OrganizationModuleSpec extends ObjectBehavior
 {

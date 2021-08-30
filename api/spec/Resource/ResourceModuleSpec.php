@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace spec\Yawik\Resource;
 
 use PhpSpec\ObjectBehavior;
-use Yawik\Core\ModuleInterface;
-use Yawik\Resource\ResourceModule;
+use Yawik\Module\Core\ModuleInterface;
+use Yawik\Module\Resource\ResourceModule;
 
 class ResourceModuleSpec extends ObjectBehavior
 {

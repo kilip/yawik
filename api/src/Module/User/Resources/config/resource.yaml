@@ -1,0 +1,15 @@
+doctrine_mongodb:
+  document_managers:
+    default:
+      mappings:
+        user:
+          is_bundle: false
+          type: xml
+          prefix: 'Yawik\Module\User\Model'
+          dir: '%yawik.user.base_path%/Resources/doctrine'
+  resolve_target_documents:
+    Yawik\Component\User\Model\UserInterface: Yawik\Module\User\Model\User
+
+api_platform:
+  mapping:
+    paths: ['%yawik.user.base_path%/Resources/api']

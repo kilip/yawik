@@ -1,0 +1,22 @@
+doctrine_mongodb:
+  document_managers:
+    default:
+      mappings:
+        organization:
+          is_bundle: false
+          type: xml
+          prefix: 'Yawik\Component\Organization\Model'
+          dir: '%yawik.organization.base_path%/Resources/doctrine'
+  resolve_target_documents:
+    Yawik\Component\Organization\Model\OrganizationInterface: Yawik\Component\Organization\Model\Organization
+    Yawik\Component\Organization\Model\WorkflowSettingsInterface: Yawik\Component\Organization\Model\WorkflowSettings
+    Yawik\Component\Organization\Model\EmployeePermissionInterface: Yawik\Component\Organization\Model\EmployeePermission
+
+api_platform:
+  mapping:
+    paths: ['%yawik.organization.base_path%/Resources/api']
+
+framework:
+  serializer:
+    mapping:
+      paths: ['%yawik.organization.base_path%/Resources/serializer']

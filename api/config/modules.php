@@ -12,8 +12,8 @@
 declare(strict_types=1);
 
 return [
-    Yawik\User\UserModule::class,
-    Yawik\Resource\ResourceModule::class,
-    Yawik\Organization\OrganizationModule::class,
-    Yawik\Job\JobModule::class,
+    Yawik\Module\User\UserModule::class,
+    Yawik\Module\Resource\ResourceModule::class,
+    Yawik\Module\Organization\OrganizationModule::class,
+    Yawik\Module\Job\JobModule::class,
 ];

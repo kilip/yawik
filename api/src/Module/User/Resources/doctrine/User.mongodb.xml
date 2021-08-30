@@ -1,0 +1,10 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <document name="Yawik\Module\User\Model\User" collection="users">
+        <id/>
+        <field field-name="username" name="login" type="string"/>
+        <field name="role" type="string"/>
+        <field name="credential" type="string"/>
+        <field name="secret" type="string"/>
+        <field name="isDraft" field-name="draft" type="boolean"/>
+    </document>
+</doctrine-mongo-mapping>
