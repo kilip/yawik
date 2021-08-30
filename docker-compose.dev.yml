@@ -21,6 +21,7 @@ services:
     volumes:
       - "./${FRONTEND:-nuxt}:/usr/src/pwa:rw,cached"
   caddy:
+    image: ghcr.io/kilip/yawik-caddy-dev
     volumes:
       - ./api/docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - ./api/public:/srv/api/public:ro
