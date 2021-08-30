@@ -3,7 +3,7 @@ version: "3.4"
 # Development environment override
 services:
   php:
-    image: ghcr.io/kilip/yawik/php-dev
+    image: ghcr.io/kilip/yawik-php-dev
     volumes:
       - ./api:/srv/api:rw,cached
       - ./api/docker/php/conf.d/api-platform.dev.ini:/usr/local/etc/php/conf.d/api-platform.ini
@@ -14,13 +14,14 @@ services:
       MONGODB_URL: mongodb://yawik:yawik@database:27017
 
   pwa:
-    image: ghcr.io/kilip/yawik/${FRONTEND:-nuxt}-dev
+    image: ghcr.io/kilip/yawik-${FRONTEND:-nuxt}-dev
     build:
       context: "${FRONTEND:-nuxt}"
       target: "yawik_${FRONTEND:-nuxt}_dev"
     volumes:
       - "./${FRONTEND:-nuxt}:/usr/src/pwa:rw,cached"
   caddy:
+    image: ghcr.io/kilip/yawik-caddy-dev
     volumes:
       - ./api/docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - ./api/public:/srv/api/public:ro
