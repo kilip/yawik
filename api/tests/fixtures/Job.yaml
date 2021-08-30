@@ -6,3 +6,10 @@ Yawik\Job\Model\Job:
   jobs_{1..5}:
     title: <name()>
     company: '@company*'
+    contactEmail: <freeEmail()>
+    language: <randomElement(['en'|'de'])>
+    link: <url()>
+    datePublishStart: <dateTime()>
+    datePublishEnd: <dateTime()>
+    termsAccepted: true
+    reference: "test"

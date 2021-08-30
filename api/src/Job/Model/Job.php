@@ -39,10 +39,6 @@ class Job implements ResourceInterface
 
     private \DateTimeInterface $datePublishEnd;
 
-    private Status $status;
-
-    private History $history;
-
     private bool $termsAccepted;
 
     private string $reference;
@@ -91,26 +87,6 @@ class Job implements ResourceInterface
             $datePublishEnd = \DateTimeImmutable::createFromMutable($datePublishEnd);
         }
         $this->datePublishEnd = $datePublishEnd;
-    }
-
-    public function getStatus(): Status
-    {
-        return $this->status;
-    }
-
-    public function setStatus(Status $status): void
-    {
-        $this->status = $status;
-    }
-
-    public function getHistory(): History
-    {
-        return $this->history;
-    }
-
-    public function setHistory(History $history): void
-    {
-        $this->history = $history;
     }
 
     public function isTermsAccepted(): bool

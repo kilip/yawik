@@ -17,7 +17,6 @@ use PhpSpec\ObjectBehavior;
 use Yawik\Job\Model\Job;
 use Yawik\Organization\Model\Company;
 use Yawik\Resource\Contracts\ResourceInterface;
-use Yawik\User\Contracts\UserInterface;
 
 /**
  * @covers \Yawik\Job\Model\Job

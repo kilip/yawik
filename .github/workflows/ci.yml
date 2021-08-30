@@ -7,6 +7,9 @@ on:
     branches: ['master']
   workflow_dispatch: ~
 
+env:
+  DOYO_CI: 1
+
 jobs:
   tests:
     name: Tests
@@ -14,13 +17,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Pull images
-        run: ./dev pull --ignore-pull-failures || true
       - name: Start services
-        run: ./dev boot --build -d
+        run: ./dev boot -d
       - name: Wait for services
         run: |
-          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose ps -q php)")"; do
+          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(./dev ps -q php)")"; do
             case $status in
               starting) sleep 1;;
               healthy) exit 0;;
@@ -38,11 +39,10 @@ jobs:
         run: curl  -vk -o /dev/null https://localhost
       - name: Create test database
         run: |
-          ./dev symfony -e test doctrine:database:create
-          ./dev symfony -e test doctrine:migrations:migrate --no-interaction
+          ./dev symfony -e test yawik:fixtures:load
       - name: PHPUnit
-        run: docker-compose exec -T php bin/phpunit
-      - name: Doctrine Schema Validator
-        run: docker-compose exec -T php bin/console doctrine:schema:validate --skip-sync
-      - name: Jest
-        run: docker-compose exec -T pwa yarn test --ci --passWithNoTests
+        run: ./dev phpunit
+      #- name: Doctrine Schema Validator
+      #  run: docker-compose exec -T php bin/console doctrine:schema:validate --skip-sync
+      #- name: Jest
+      #  run: docker-compose exec -T pwa yarn test --ci --passWithNoTests
