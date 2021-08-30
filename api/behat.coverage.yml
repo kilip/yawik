@@ -1,0 +1,16 @@
+imports:
+  - behat.yml.dist
+default:
+  extensions:
+    DVDoug\Behat\CodeCoverage\Extension:
+      filter:
+        include:
+          directories:
+            'src':
+              suffix: '*.php'
+        exclude:
+          directories:
+            'tests': ~
+      reports:
+        php:
+          target: build/php/behat.cov

@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace spec\Yawik\User;
 
 use PhpSpec\ObjectBehavior;
-use Yawik\Core\ModuleInterface;
-use Yawik\User\UserModule;
+use Yawik\Module\Core\ModuleInterface;
+use Yawik\Module\User\UserModule;
 
 /**
- * @covers \Yawik\User\UserModule
+ * @covers \Yawik\Module\User\UserModule
  */
 class UserModuleSpec extends ObjectBehavior
 {

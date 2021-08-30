@@ -1,0 +1,7 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document name="Yawik\Component\Organization\Model\Template">
+        <field name="labelRequirements" field-name="requirements" type="string"/>
+        <field name="labelQualifications" field-name="qualifications" type="string"/>
+        <field name="labelBenefits" field-name="benefits" type="string"/>
+    </embedded-document>
+</doctrine-mongo-mapping>

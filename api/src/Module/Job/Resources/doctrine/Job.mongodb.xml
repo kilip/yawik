@@ -1,0 +1,22 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <document
+        collection="jobs"
+        name="Yawik\Component\Job\Model\Job"
+    >
+        <id/>
+        <field name="title" type="string" index="true"/>
+        <field name="company" type="string" nullable="true"/>
+        <field name="contactEmail" type="string"/>
+        <field name="language" type="string"/>
+        <field name="link" type="string"/>
+        <field name="datePublishStart" type="tz_date"/>
+        <field name="datePublishEnd" type="tz_date"/>
+        <field name="termsAccepted" type="boolean"/>
+        <field name="reference" type="string"/>
+        <field name="company" type="string"/>
+        <embed-one field="status" target-document="Yawik\Component\Job\Model\Status" nullable="true"/>
+        <embed-one field="history" target-document="Yawik\Component\Job\Model\History" nullable="true"/>
+        <reference-one field="organization" field-name="organization" store-as="id" target-document="Yawik\Component\Organization\Model\Organization" nullable="true"/>
+        <reference-one field="user" field-name="user" store-as="id" target-document="Yawik\Component\User\Model\UserInterface"/>
+    </document>
+</doctrine-mongo-mapping>

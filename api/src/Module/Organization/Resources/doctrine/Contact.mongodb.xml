@@ -1,0 +1,12 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document name="Yawik\Component\Organization\Model\Contact">
+        <field name="houseNumber" type="string" nullable="true"/>
+        <field name="postalCode" type="string" nullable="true"/>
+        <field name="city" type="string" nullable="true"/>
+        <field name="street" type="string" nullable="true"/>
+        <field name="phone" type="string" nullable="true"/>
+        <field name="country" type="string" nullable="true"/>
+        <field name="fax" type="string" nullable="true"/>
+        <field name="website" type="string" nullable="true"/>
+    </embedded-document>
+</doctrine-mongo-mapping>

@@ -11,12 +11,22 @@ env:
   DOYO_CI: 1
 
 jobs:
-  tests:
-    name: Tests
+  build:
+    name: Build (Build Docker Image)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - uses: satackey/action-docker-layer-caching@v0.0.11
+        continue-on-error: true
+        with:
+          key: |
+            ${{ runner.os }}-buildx-${{ hashFiles('**/.github/workflows/ci.yml','**/docker-compose.yml','**/docker-compose.dev.yml','**/api/Dockerfile','**/pwa/Dockerfile') }}
+          restore-keys: ${{ runner.os }}-buildx-
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Start services
         run: ./dev boot -d
       - name: Wait for services
@@ -37,12 +47,13 @@ jobs:
         run: curl -v -o /dev/null http://localhost
       - name: Check HTTPS reachability
         run: curl  -vk -o /dev/null https://localhost
-      - name: Create test database
+      - name: Stop services
+        run: ./dev stop
+      - name: Lists existing image
+        run: docker image ls
+        continue-on-error: true
+      - name: Push image
         run: |
-          ./dev symfony -e test yawik:fixtures:load
-      - name: PHPUnit
-        run: ./dev phpunit
-      #- name: Doctrine Schema Validator
-      #  run: docker-compose exec -T php bin/console doctrine:schema:validate --skip-sync
-      #- name: Jest
-      #  run: docker-compose exec -T pwa yarn test --ci --passWithNoTests
+          docker push ghcr.io/kilip/yawik-php-dev
+          docker push ghcr.io/kilip/yawik-caddy-dev
+          docker push ghcr.io/kilip/yawik-nuxt-dev

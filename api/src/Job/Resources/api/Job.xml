@@ -1,6 +1,0 @@
-<resources xmlns="https://api-platform.com/schema/metadata">
-    <resource
-        class="Yawik\Job\Model\Job"
-    >
-    </resource>
-</resources>

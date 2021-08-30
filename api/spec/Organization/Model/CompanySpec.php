@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace spec\Yawik\Organization\Model;
 
 use PhpSpec\ObjectBehavior;
-use Yawik\Organization\Model\Company;
-use Yawik\Resource\Contracts\ResourceInterface;
+use Yawik\Component\Organization\Model\Company;
+use Yawik\Component\Resource\Model\ResourceInterface;
 
 class CompanySpec extends ObjectBehavior
 {

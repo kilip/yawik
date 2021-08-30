@@ -2,7 +2,7 @@ parameters:
     paths:
         - src
         - tests
-    level: 5
+    level: 1
     checkMissingIterableValueType: false
     excludePaths:
         - src/*/*/Resources

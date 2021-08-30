@@ -1,0 +1,48 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <document
+        name="Yawik\Component\Organization\Model\Organization"
+        collection="organizations"
+
+    >
+        <id/>
+        <field name="externalId" type="string" nullable="true" index="true"/>
+        <reference-one
+            field="organizationName"
+            target-document="Yawik\Component\Organization\Model\OrganizationName"
+            store-as="id"
+            nullable="true"
+        >
+            <cascade>
+                <persist/>
+            </cascade>
+        </reference-one>
+        <field name="isDraft" type="boolean" field-name="draft"/>
+        <embed-one field="contact" target-document="Yawik\Component\Organization\Model\Contact"/>
+        <field name="description" type="string" nullable="true"/>
+        <reference-many
+            field="hiringOrganizations"
+            target-document="Yawik\Component\Organization\Model\Organization"
+        />
+        <embed-many
+            field="employees"
+            target-document="Yawik\Component\Organization\Model\Employee"
+        />
+        <reference-one
+            field="user"
+            target-document="Yawik\Component\User\Model\UserInterface"
+            field-name="owner"
+            store-as="id"
+        >
+            <cascade>
+                <all/>
+            </cascade>
+        </reference-one>
+        <embed-one field="template" target-document="Yawik\Component\Organization\Model\Template"/>
+        <embed-one
+            field="workflowSettings"
+            target-document="Yawik\Component\Organization\Model\WorkflowSettingsInterface"
+            nullable="true"
+        />
+        <field name="profileSetting" nullable="true" type="string"/>
+    </document>
+</doctrine-mongo-mapping>
