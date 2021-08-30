@@ -6,7 +6,6 @@
     >
         <id/>
         <field name="externalId" type="string" nullable="true" index="true"/>
-        <!--
         <reference-one
             field="organizationName"
             target-document="Yawik\Component\Organization\Model\OrganizationName"
@@ -17,7 +16,6 @@
                 <persist/>
             </cascade>
         </reference-one>
-        -->
         <field name="isDraft" type="boolean" field-name="draft"/>
         <embed-one field="contact" target-document="Yawik\Component\Organization\Model\Contact"/>
         <field name="description" type="string" nullable="true"/>

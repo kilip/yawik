@@ -16,7 +16,7 @@ namespace spec\Yawik\Job\Model;
 use PhpSpec\ObjectBehavior;
 use Yawik\Component\Job\Model\Job;
 use Yawik\Component\Organization\Model\Company;
-use Yawik\Module\Resource\Contracts\ResourceInterface;
+use Yawik\Component\Resource\Model\ResourceInterface;
 
 /**
  * @covers \Yawik\Component\Job\Model\Job

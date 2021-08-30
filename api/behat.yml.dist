@@ -2,8 +2,15 @@ default:
   suites:
     default:
       contexts:
+        - behatch:context:browser
+        - behatch:context:debug
+        - behatch:context:system
+        - behatch:context:json
+        - behatch:context:table
         - behatch:context:rest
-        - Yawik\Tests\Behat\DemoContext
+        - behatch:context:xml
+        - 'Behat\MinkExtension\Context\MinkContext'
+        - 'Yawik\Tests\Behat\DemoContext'
   extensions:
     'FriendsOfBehat\SymfonyExtension':
       bootstrap: 'config/bootstrap.php'
@@ -13,7 +20,7 @@ default:
         class: Yawik\Kernel
         path: './src/Kernel.php'
     'Behat\MinkExtension':
-      base_url: 'http://example.com/'
+      base_url: 'http://localhost/'
       files_path: 'features/files'
       sessions:
         default:

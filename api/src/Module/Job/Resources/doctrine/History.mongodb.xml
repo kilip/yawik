@@ -2,5 +2,11 @@
     <embedded-document
         name="Yawik\Component\Job\Model\History"
     >
+        <embed-one
+            field="status"
+            target-document="Yawik\Component\Job\Model\Status"
+        />
+        <field name="date" type="tz_date"/>
+        <field name="message" type="string"/>
     </embedded-document>
 </doctrine-mongo-mapping>

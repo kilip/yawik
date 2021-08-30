@@ -1,15 +1,26 @@
-Yawik\Organization\Model\Company:
-  company_{1..5}:
-    name: <company()>
+Yawik\Module\User\Model\User:
+  testUser:
+    username: Test User
+    email: test@example.com
+    role: "software engineer"
+    credential: "5558b34346e28a4a5f5a6a874226d64587f80007"
 
-Yawik\Job\Model\Job:
+Yawik\Component\Organization\Model\OrganizationName:
+  org_name:
+    name: Organization Test
+
+Yawik\Component\Organization\Model\Organization:
+  org:
+    organizationName: '@org_name'
+
+Yawik\Component\Job\Model\Job:
   jobs_{1..5}:
-    title: <name()>
-    company: '@company*'
-    contactEmail: <freeEmail()>
-    language: <randomElement(['en'|'de'])>
-    link: <url()>
+    title: 'Software Developer'
+    organization: '@org'
+    contactEmail: 'job@example.com'
+    language: en
     datePublishStart: <dateTime()>
     datePublishEnd: <dateTime()>
     termsAccepted: true
     reference: "test"
+    user: "@testUser"

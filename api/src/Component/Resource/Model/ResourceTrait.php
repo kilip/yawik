@@ -11,9 +11,17 @@
 
 declare(strict_types=1);
 
-namespace Yawik\Module\Resource\Contracts;
+namespace Yawik\Component\Resource\Model;
 
-interface ResourceInterface
+trait ResourceTrait
 {
-    public function getId(): string;
+    protected string $id;
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
 }

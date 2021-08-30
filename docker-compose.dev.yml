@@ -12,8 +12,6 @@ services:
     environment:
       APP_ENV: dev
       MONGODB_URL: mongodb://yawik:yawik@database:27017
-    ports:
-      - "9003:9003"
 
   pwa:
     image: ghcr.io/kilip/yawik/${FRONTEND:-nuxt}-dev
@@ -31,5 +29,5 @@ services:
 
   database:
     volumes:
-      - ./var/mongo/data:/var/lib/mongodb/data:rw
+      - ./var/mongo/data:/data/db:rw
       - ./docker/mongo:/dump:rw

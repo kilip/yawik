@@ -2,5 +2,6 @@
     <embedded-document
         name="Yawik\Component\Job\Model\Status"
     >
+        <field name="name" type="string"/>
     </embedded-document>
 </doctrine-mongo-mapping>

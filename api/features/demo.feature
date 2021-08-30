@@ -10,3 +10,7 @@ Feature:
     Scenario: It receives a response from Symfony's kernel
         When a demo scenario sends a request to "/locations"
         Then the response should be received
+
+    Scenario: List jobs
+        When I send a GET request to "/jobs"
+        Then the response status code should be 200

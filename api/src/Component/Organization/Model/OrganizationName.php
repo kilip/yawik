@@ -2,8 +2,8 @@
 
 namespace Yawik\Component\Organization\Model;
 
-use Yawik\Module\Resource\Contracts\ResourceInterface;
-use Yawik\Module\Resource\Contracts\ResourceTrait;
+use Yawik\Component\Resource\Model\ResourceInterface;
+use Yawik\Component\Resource\Model\ResourceTrait;
 
 class OrganizationName implements ResourceInterface
 {

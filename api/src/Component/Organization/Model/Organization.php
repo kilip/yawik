@@ -5,8 +5,8 @@ namespace Yawik\Component\Organization\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Yawik\Component\User\Model\UserInterface;
-use Yawik\Module\Resource\Contracts\ResourceInterface;
-use Yawik\Module\Resource\Contracts\ResourceTrait;
+use Yawik\Component\Resource\Model\ResourceInterface;
+use Yawik\Component\Resource\Model\ResourceTrait;
 
 class Organization implements
     ResourceInterface,

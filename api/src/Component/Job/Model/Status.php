@@ -13,9 +13,30 @@ declare(strict_types=1);
 
 namespace Yawik\Component\Job\Model;
 
-use Yawik\Module\Resource\Contracts\ResourceInterface;
-use Yawik\Module\Resource\Contracts\ResourceTrait;
+use Yawik\Component\Resource\Model\StatusInterface;
 
-class Status
+class Status implements StatusInterface
 {
+    protected string $name;
+
+    public function __construct(string $status = self::CREATED)
+    {
+        $this->name = $status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
 }

@@ -17,8 +17,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Yawik\Component\Organization\Model\Company;
 use Yawik\Component\Organization\Model\Organization;
 use Yawik\Component\User\Model\UserInterface;
-use Yawik\Module\Resource\Contracts\ResourceInterface;
-use Yawik\Module\Resource\Contracts\ResourceTrait;
+use Yawik\Component\Resource\Model\ResourceInterface;
+use Yawik\Component\Resource\Model\ResourceTrait;
 
 class Job implements ResourceInterface
 {
@@ -48,24 +48,30 @@ class Job implements ResourceInterface
 
     protected History $history;
 
-    protected Organization $organization;
+    protected ?Organization $organization = null;
 
     protected UserInterface $user;
 
-    /**
-     * @return Organization
-     */
-    public function getOrganization(): Organization
+    public function __construct()
     {
-        return $this->organization;
+        $this->status = new Status();
+        $this->history = new History($this->status);
     }
 
     /**
-     * @param Organization $organization
+     * @return string
      */
-    public function setOrganization(Organization $organization): void
+    public function getTitle(): string
     {
-        $this->organization = $organization;
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
     }
 
     /**
@@ -82,6 +88,38 @@ class Job implements ResourceInterface
     public function setApplyId(?string $applyId): void
     {
         $this->applyId = $applyId;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param string|null $company
+     */
+    public function setCompany(?string $company): void
+    {
+        $this->company = $company;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactEmail(): string
+    {
+        return $this->contactEmail;
+    }
+
+    /**
+     * @param string $contactEmail
+     */
+    public function setContactEmail(string $contactEmail): void
+    {
+        $this->contactEmail = $contactEmail;
     }
 
     /**
@@ -148,60 +186,36 @@ class Job implements ResourceInterface
         $this->datePublishEnd = $datePublishEnd;
     }
 
+    /**
+     * @return bool
+     */
     public function isTermsAccepted(): bool
     {
         return $this->termsAccepted;
     }
 
+    /**
+     * @param bool $termsAccepted
+     */
     public function setTermsAccepted(bool $termsAccepted): void
     {
         $this->termsAccepted = $termsAccepted;
     }
 
-    public function getReference(): string
+    /**
+     * @return string|null
+     */
+    public function getReference(): ?string
     {
         return $this->reference;
     }
 
-    public function setReference(string $reference): void
+    /**
+     * @param string|null $reference
+     */
+    public function setReference(?string $reference): void
     {
         $this->reference = $reference;
-    }
-
-    public function getContactEmail(): string
-    {
-        return $this->contactEmail;
-    }
-
-    public function setContactEmail(string $contactEmail): void
-    {
-        $this->contactEmail = $contactEmail;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): void
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCompany(): ?string
-    {
-        return $this->company;
-    }
-
-    /**
-     * @param string|null $company
-     */
-    public function setCompany(?string $company): void
-    {
-        $this->company = $company;
     }
 
     /**
@@ -234,6 +248,22 @@ class Job implements ResourceInterface
     public function setHistory(History $history): void
     {
         $this->history = $history;
+    }
+
+    /**
+     * @return Organization|null
+     */
+    public function getOrganization(): ?Organization
+    {
+        return $this->organization;
+    }
+
+    /**
+     * @param Organization|null $organization
+     */
+    public function setOrganization(?Organization $organization): void
+    {
+        $this->organization = $organization;
     }
 
     /**
