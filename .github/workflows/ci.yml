@@ -53,7 +53,7 @@ jobs:
       - name: Push image
         run: |
           docker push ghcr.io/kilip/yawik-php-dev
-          docker push ghcr.io/kilip/yawik-caddy
+          docker push ghcr.io/kilip/yawik-caddy-dev
           docker push ghcr.io/kilip/yawik-nuxt-dev
       #- name: Create test database
       #  run: |
