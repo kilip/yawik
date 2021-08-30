@@ -17,6 +17,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Start services
         run: ./dev boot -d
       - name: Wait for services
@@ -37,11 +48,17 @@ jobs:
         run: curl -v -o /dev/null http://localhost
       - name: Check HTTPS reachability
         run: curl  -vk -o /dev/null https://localhost
-      - name: Create test database
+      - name: Push image
         run: |
-          ./dev symfony -e test yawik:fixtures:load
-      - name: PHPUnit
-        run: ./dev phpunit
+          docker push ghcr.io/kilip/yawik/php
+          docker push ghcr.io/kilip/yawik/caddy
+          docker push ghcr.io/kilip/yawik/nuxt
+          docker push ghcr.io/kilip/yawik/nuxt-dev
+      #- name: Create test database
+      #  run: |
+      #    ./dev symfony -e test yawik:fixtures:load
+      #- name: PHPUnit
+      #  run: ./dev phpunit
       #- name: Doctrine Schema Validator
       #  run: docker-compose exec -T php bin/console doctrine:schema:validate --skip-sync
       #- name: Jest
