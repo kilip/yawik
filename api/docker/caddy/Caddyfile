@@ -24,6 +24,8 @@ log
     || {path} == "/robots.txt"
     || {path}.startsWith("/_next")
     || {path}.startsWith("/_nuxt")
+    || {path}.startsWith("/_loading")
+    || {path}.startsWith("/__webpack_hmr")
     || {path}.startsWith("/dist")
     || {path}.startsWith("/sitemap")`
 

@@ -1,5 +1,5 @@
 <resources xmlns="https://api-platform.com/schema/metadata">
-    <resource class="Yawik\Component\Organization\Model\Organization">
+    <resource class="Yawik\Component\Organization\Model\OrganizationName">
         <attribute name="normalization_context">
             <attribute name="groups">read</attribute>
         </attribute>

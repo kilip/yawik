@@ -3,6 +3,12 @@
         class="Yawik\Component\Job\Model\Job"
         shortName="Jobs"
     >
+        <attribute name="normalization_context">
+            <attribute name="groups">read</attribute>
+        </attribute>
+        <attribute name="denormalization_context">
+            <attribute name="groups">write</attribute>
+        </attribute>
         <collectionOperations>
             <collectionOperation name="get"/>
             <collectionOperation name="post"/>

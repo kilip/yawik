@@ -2,11 +2,12 @@ doctrine_mongodb:
   document_managers:
     default:
       mappings:
-        job:
+        job_component:
           is_bundle: false
           type: xml
           dir: '%yawik.job.base_path%/Resources/doctrine'
           prefix: 'Yawik\Component\Job\Model'
+
   resolve_target_documents:
     Yawik\Component\Model\JobInterface: Yawik\Component\Job\Model\Job
 
@@ -18,7 +19,6 @@ framework:
   serializer:
     mapping:
       paths: ['%yawik.job.base_path%/Resources/serializer']
-
 
 services:
   Yawik\Module\Job\DataProvider\JobCollectionDataProvider:

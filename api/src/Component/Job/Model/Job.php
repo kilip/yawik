@@ -56,6 +56,19 @@ class Job implements JobInterface
     }
 
     /**
+     * @return string|null
+     * @psalm-suppress PossiblyNullReference
+     */
+    public function getCompany(): ?string
+    {
+        $company = $this->company;
+        if(is_null($this->company) && !is_null($this->organization)){
+            $company = $this->getOrganization()->getOrganizationName()->getName();
+        }
+        return $company;
+    }
+
+    /**
      * @return string
      */
     public function getTitle(): string
@@ -85,14 +98,6 @@ class Job implements JobInterface
     public function setApplyId(?string $applyId): void
     {
         $this->applyId = $applyId;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCompany(): ?string
-    {
-        return $this->company;
     }
 
     /**

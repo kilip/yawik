@@ -96,6 +96,10 @@ if [ $# -gt 0 ]; then
         docker-compose $EXEC_CMD php bin/console cache:clear "${@: 2}"
     elif [[ "$1" == "doctrine" ]]; then
         docker-compose $EXEC_CMD php bin/console "${@: 2}"
+    elif [[ "$1" == "yarn" ]]; then
+        docker-compose $EXEC_CMD pwa yarn "${@: 2}"
+    elif [[ "$1" == "npx" ]]; then
+        docker-compose $EXEC_CMD pwa npx "${@: 2}"
     else
         docker-compose "$@"
     fi

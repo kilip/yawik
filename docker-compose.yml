@@ -28,7 +28,6 @@ services:
       NEXT_PUBLIC_ENTRYPOINT: http://caddy
     ports:
       - "3000:3000"
-      - "8080:8080"
 
   caddy:
     container_name: yawik.caddy
