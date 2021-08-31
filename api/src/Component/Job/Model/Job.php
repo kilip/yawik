@@ -13,14 +13,11 @@ declare(strict_types=1);
 
 namespace Yawik\Component\Job\Model;
 
-use Symfony\Component\Serializer\Annotation\Groups;
-use Yawik\Component\Organization\Model\Company;
 use Yawik\Component\Organization\Model\Organization;
 use Yawik\Component\User\Model\UserInterface;
-use Yawik\Component\Resource\Model\ResourceInterface;
 use Yawik\Component\Resource\Model\ResourceTrait;
 
-class Job implements ResourceInterface
+class Job implements JobInterface
 {
     use ResourceTrait;
 
@@ -59,6 +56,19 @@ class Job implements ResourceInterface
     }
 
     /**
+     * @return string|null
+     * @psalm-suppress PossiblyNullReference
+     */
+    public function getCompany(): ?string
+    {
+        $company = $this->company;
+        if(is_null($this->company) && !is_null($this->organization)){
+            $company = $this->getOrganization()->getOrganizationName()->getName();
+        }
+        return $company;
+    }
+
+    /**
      * @return string
      */
     public function getTitle(): string
@@ -88,14 +98,6 @@ class Job implements ResourceInterface
     public function setApplyId(?string $applyId): void
     {
         $this->applyId = $applyId;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCompany(): ?string
-    {
-        return $this->company;
     }
 
     /**

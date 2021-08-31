@@ -1,10 +1,16 @@
-Yawik\Organization\Model\Company:
-  company_{1..50}:
-    name: <company()>,<companySuffix()>
+Yawik\Job\Model\Status:
+  active:
+    name: active
+
+Yawik\Job\Model\History:
+  history:
+    status: active
 
 Yawik\Job\Model\Job:
   jobs_{1..100}:
     title: <name()>
     company: '@company_*'
     contactEmail: <freeEmail()>
+    status: '@active'
+    history: '@history'
     language: <randomElement(['en','de'])>

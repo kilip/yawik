@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-mongorestore --authenticationDatabase admin --host localhost --username yawik --password yawik -d YawikDemo YawikDemo
+mongorestore --authenticationDatabase admin --host 127.0.0.1 --username yawik --password yawik -d YawikDemo YawikDemo

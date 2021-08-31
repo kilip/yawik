@@ -49,6 +49,11 @@ class Organization implements
         $this->organizationName = new OrganizationName();
     }
 
+    public function getName(): string
+    {
+        return $this->getOrganizationName()->getName();
+    }
+
     /**
      * @return string|null
      */

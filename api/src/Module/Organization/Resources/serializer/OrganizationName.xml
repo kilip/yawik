@@ -1,0 +1,7 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\Component\Organization\Model\OrganizationName">
+        <attribute name="name">
+            <group>read</group>
+        </attribute>
+    </class>
+</serializer>
