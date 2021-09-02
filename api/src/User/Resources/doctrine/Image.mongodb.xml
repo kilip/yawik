@@ -1,0 +1,12 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <gridfs-file
+        name="Yawik\User\Model\Image" bucket-name="users.images"
+    >
+        <id/>
+        <chunk-size/>
+        <length/>
+        <filename field-name="name"/>
+        <upload-date/>
+        <metadata target-document="Yawik\Resource\File\FileMetadataInterface"/>
+    </gridfs-file>
+</doctrine-mongo-mapping>

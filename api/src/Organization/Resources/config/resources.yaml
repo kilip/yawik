@@ -1,0 +1,21 @@
+doctrine_mongodb:
+  document_managers:
+    default:
+      mappings:
+        organization:
+          is_bundle: false
+          type: xml
+          dir: '%yawik.organization.base_path%/Resources/doctrine'
+          prefix: 'Yawik\Organization\Model'
+
+  resolve_target_documents:
+    Yawik\Organization\Model\OrganizationInterface: Yawik\Organization\Model\Organization
+
+api_platform:
+  mapping:
+    paths: ['%yawik.organization.base_path%/Resources/api']
+
+framework:
+  serializer:
+    mapping:
+      paths: ['%yawik.organization.base_path%/Resources/serialization']

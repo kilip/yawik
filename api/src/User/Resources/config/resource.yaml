@@ -1,0 +1,24 @@
+doctrine_mongodb:
+  document_managers:
+    default:
+      mappings:
+        user_model:
+          is_bundle: false
+          type: xml
+          dir: '%yawik.user.base_path%/Resources/doctrine'
+          prefix: 'Yawik\User\Model'
+
+  resolve_target_documents:
+    Yawik\User\Model\GroupInterface: Yawik\User\Model\Group
+    Yawik\User\Model\ProfileInterface: Yawik\User\Model\Profile
+    Yawik\User\Model\StatusInterface: Yawik\User\Model\Status
+    Yawik\User\Model\UserInterface: Yawik\User\Model\User
+
+api_platform:
+  mapping:
+    paths: ['%yawik.user.base_path%/Resources/api']
+
+framework:
+  serializer:
+    mapping:
+      paths: ['%yawik.user.base_path%/Resources/serialization']

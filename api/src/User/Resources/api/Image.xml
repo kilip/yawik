@@ -1,0 +1,17 @@
+<resources xmlns="https://api-platform.com/schema/metadata">
+    <resource
+        class="Yawik\User\Model\Image"
+        description="User Images"
+        shortName="Image"
+    >
+        <attribute name="route_prefix">users</attribute>
+        <collectionOperations>
+            <collectionOperation name="post"/>
+        </collectionOperations>
+        <itemOperations>
+            <itemOperation name="get">
+                <attribute name="description"/>
+            </itemOperation>
+        </itemOperations>
+    </resource>
+</resources>

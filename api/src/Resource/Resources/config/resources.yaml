@@ -1,0 +1,27 @@
+doctrine_mongodb:
+  types:
+    tz_date: Yawik\Resource\Doctrine\TimezoneAwareDate
+  document_managers:
+    default:
+      mappings:
+        resource:
+          is_bundle: false
+          type: xml
+          dir: '%yawik.resource.base_path%/Resources/doctrine'
+          prefix: 'Yawik\Resource\Model'
+        resource_annotation:
+          is_bundle: false
+          type: annotation
+          dir: '%yawik.resource.base_path%/File'
+          prefix: 'Yawik\Resource\File'
+  resolve_target_documents:
+    Yawik\Resource\File\FileMetadataInterface: Yawik\Resource\File\FileMetadata
+
+api_platform:
+  mapping:
+    paths: ['%yawik.resource.base_path%/Resources/api']
+
+framework:
+  serializer:
+    mapping:
+      paths: ['%yawik.resource.base_path%/Resources/serialization']

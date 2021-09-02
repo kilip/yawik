@@ -1,0 +1,22 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document name="Yawik\User\Model\Profile">
+        <field name="birthday" type="date" nullable="true"/>
+        <field name="email" type="string" />
+        <field name="emailVerified" type="bool"/>
+        <field name="firstName" type="string" nullable="true"/>
+        <field name="lastName" type="string" nullable="true"/>
+        <field name="gender" type="string" nullable="true"/>
+        <field name="houseNumber" type="string" nullable="true"/>
+        <field name="phone" type="string" nullable="true"/>
+        <field name="postalCode" type="string" nullable="true"/>
+        <field name="street" type="string" nullable="true"/>
+        <field name="city" type="string" nullable="true"/>
+        <field name="country" type="string" nullable="true"/>
+        <reference-one
+            field="image"
+            store-as="id"
+            nullable="true"
+            target-document="Yawik\User\Model\Image"
+        />
+    </embedded-document>
+</doctrine-mongo-mapping>

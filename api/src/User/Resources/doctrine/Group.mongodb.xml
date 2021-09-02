@@ -1,0 +1,7 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <document name="Yawik\User\Model\Group" collection="users.group">
+        <id/>
+        <reference-one field="owner" target-document="Yawik\User\Model\UserInterface" inversed-by="groups" store-as="id"/>
+        <field name="name" type="string"/>
+    </document>
+</doctrine-mongo-mapping>

@@ -1,0 +1,22 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <document name="Yawik\User\Model\User" collection="users">
+        <id/>
+        <field name="username" also-load="login" type="string"/>
+        <field name="role" type="string"/>
+        <embed-one
+            field="info"
+            field-name="info"
+            target-document="Yawik\User\Model\ProfileInterface"
+            nullable="true"
+        />
+        <field name="password" also-load="credential" type="string" nullable="true"/>
+        <field name="email" type="string" nullable="true"/>
+        <field name="socialProfiles" also-load="profiles" type="hash"/>
+        <reference-many field="groups" target-document="Yawik\User\Model\GroupInterface" mapped-by="owner" store-as="id">
+            <cascade>
+                <all/>
+            </cascade>
+        </reference-many>
+        <field name="draft" also-load="isDraft" type="bool"/>
+    </document>
+</doctrine-mongo-mapping>

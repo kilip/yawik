@@ -1,0 +1,5 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document name="Yawik\User\Model\Status">
+        <field name="name" type="string"/>
+    </embedded-document>
+</doctrine-mongo-mapping>

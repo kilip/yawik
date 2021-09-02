@@ -1,0 +1,42 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <document name="Yawik\Organization\Model\Organization">
+        <id/>
+        <field name="externalId" type="string" nullable="true"/>
+        <field name="name" type="string" nullable="true"/>
+        <reference-one
+            field="image"
+            target-document="Yawik\Organization\Model\Image"
+            store-as="id"
+            nullable="true"
+        />
+        <field name="draft" type="bool"/>
+        <embed-one
+            field="contact"
+            target-document="Yawik\Organization\Model\Contact"
+            nullable="true"
+        />
+        <reference-one
+            field="parent"
+            store-as="id"
+            nullable="true"
+            target-document="Yawik\Organization\Model\OrganizationInterface"
+        />
+        <reference-one
+            field="owner"
+            store-as="id"
+            nullable="true"
+            target-document="Yawik\User\Model\UserInterface"
+        />
+        <embed-one
+            field="template"
+            nullable="true"
+            target-document="Yawik\Organization\Model\TemplateInterface"
+        />
+        <embed-one
+            field="workflowSettings"
+            nullable="true"
+            target-document="Yawik\Organization\Model\WorkflowInterface"
+        />
+        <field name="profileSetting" type="string" nullable="true"/>
+    </document>
+</doctrine-mongo-mapping>
