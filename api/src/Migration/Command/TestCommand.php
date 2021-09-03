@@ -1,14 +1,22 @@
 <?php
 
+/*
+ * This file is part of the Yawik project.
+ *
+ * (c) 2013-2021 Cross Solution
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace Yawik\Migration\Command;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
-use MongoDB\BSON\ObjectId;
-use MongoDB\Driver\Query;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Yawik\Job\Model\Job;
 use Yawik\Organization\Model\Organization;
 
 class TestCommand extends Command
@@ -17,15 +25,12 @@ class TestCommand extends Command
 
     public function __construct(
         DocumentManager $manager
-    )
-    {
+    ) {
         $this->manager = $manager;
         parent::__construct('yawik:migrate:test');
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
      * @return int
      * @psalm-suppress MixedArrayAccess
      */
@@ -37,8 +42,8 @@ class TestCommand extends Command
         $db->selectCollection('organizations')
             ->updateMany([], [
                 '$unset' => [
-                    'images' => ''
-                ]
+                    'images' => '',
+                ],
             ]);
 
         return Command::SUCCESS;

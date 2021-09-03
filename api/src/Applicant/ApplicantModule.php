@@ -11,13 +11,8 @@
 
 declare(strict_types=1);
 
-namespace Yawik\Job\Model;
+namespace Yawik\Applicant;
 
-use Yawik\Resource\Model\History as BaseHistory;
-
-/**
- * History of an job. Holds status changes of an job opening.
- */
-class History extends BaseHistory
+class ApplicantModule
 {
 }

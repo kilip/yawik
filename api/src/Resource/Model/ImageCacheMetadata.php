@@ -1,9 +1,19 @@
 <?php
 
+/*
+ * This file is part of the Yawik project.
+ *
+ * (c) 2013-2021 Cross Solution
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace Yawik\Resource\Model;
 
 use Yawik\Resource\File\FileMetadata;
-use Yawik\Resource\File\FileMetadataInterface;
 
 class ImageCacheMetadata extends FileMetadata
 {
@@ -12,37 +22,25 @@ class ImageCacheMetadata extends FileMetadata
 
     public function __construct(string $path, string $filter)
     {
-        $this->path = $path;
+        $this->path   = $path;
         $this->filter = $filter;
     }
 
-    /**
-     * @return string
-     */
     public function getPath(): string
     {
         return $this->path;
     }
 
-    /**
-     * @param string $path
-     */
     public function setPath(string $path): void
     {
         $this->path = $path;
     }
 
-    /**
-     * @return string
-     */
     public function getFilter(): string
     {
         return $this->filter;
     }
 
-    /**
-     * @param string $filter
-     */
     public function setFilter(string $filter): void
     {
         $this->filter = $filter;

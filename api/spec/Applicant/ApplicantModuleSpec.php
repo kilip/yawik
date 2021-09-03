@@ -11,13 +11,15 @@
 
 declare(strict_types=1);
 
-namespace Yawik\Job\Model;
+namespace spec\Yawik\Applicant;
 
-use Yawik\Resource\Model\History as BaseHistory;
+use PhpSpec\ObjectBehavior;
+use Yawik\Applicant\ApplicantModule;
 
-/**
- * History of an job. Holds status changes of an job opening.
- */
-class History extends BaseHistory
+class ApplicantModuleSpec extends ObjectBehavior
 {
+    public function it_is_initializable()
+    {
+        $this->shouldHaveType(ApplicantModule::class);
+    }
 }

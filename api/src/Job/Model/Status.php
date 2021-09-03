@@ -17,7 +17,6 @@ use Yawik\Resource\Model\SortableStatus;
 
 class Status extends SortableStatus
 {
-
     /**
      * @return int[]
      */

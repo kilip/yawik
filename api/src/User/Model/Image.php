@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Yawik\User\Model;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use Yawik\Resource\Controller\ImageCacheController as ImageController;
 use Yawik\Resource\File\File;
 
 class Image extends File

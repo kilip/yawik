@@ -15,12 +15,9 @@ namespace Yawik\Resource\Controller;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Repository\GridFSRepository;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Yawik\Organization\Model\OrganizationInterface;
 use Yawik\Resource\Model\ImageCache;
-use Yawik\User\Model\UserInterface;
 
 class ImageCacheController
 {
@@ -29,9 +26,8 @@ class ImageCacheController
 
     public function __construct(
         DocumentManager $dm
-    )
-    {
-        $this->dm = $dm;
+    ) {
+        $this->dm         = $dm;
         $this->repository = $dm->getRepository(ImageCache::class);
     }
 
@@ -45,7 +41,7 @@ class ImageCacheController
             'metadata.path' => $path,
         ]);
 
-        if(null === $file){
+        if (null === $file) {
             throw new NotFoundHttpException('Cache image not found');
         }
 
@@ -55,7 +51,7 @@ class ImageCacheController
         $response->headers->set('ETag', $file->getId());
         $response->headers->set('Last-Modified', gmdate('D, d M Y H:i:s', $file->getUploadDate()->getTimestamp()).' GMT');
 
-        $response->setCallback(function() use ($repository, $file){
+        $response->setCallback(function () use ($repository, $file) {
             $stream = $repository->openDownloadStream($file->getId());
             echo stream_get_contents($stream);
         });

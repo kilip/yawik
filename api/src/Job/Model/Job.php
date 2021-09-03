@@ -189,135 +189,87 @@ class Job implements ResourceInterface
         $this->publishers = new ArrayCollection();
     }
 
-
-    /**
-     * @return string|null
-     */
     public function getCompany(): ?string
     {
         $company = $this->company;
 
-        if(null === $company && $this->organization instanceof OrganizationInterface){
+        if (null === $company && $this->organization instanceof OrganizationInterface) {
             $company = $this->organization->getName();
         }
+
         return $company;
     }
 
-    /**
-     * @return string|null
-     */
     public function getApplyId(): ?string
     {
         return $this->applyId;
     }
 
-    /**
-     * @param string|null $applyId
-     */
     public function setApplyId(?string $applyId): void
     {
         $this->applyId = $applyId;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @param string|null $title
-     */
     public function setTitle(?string $title): void
     {
         $this->title = $title;
     }
 
-    /**
-     * @param string|null $company
-     */
     public function setCompany(?string $company): void
     {
         $this->company = $company;
     }
 
-    /**
-     * @return OrganizationInterface|null
-     */
     public function getOrganization(): ?OrganizationInterface
     {
         return $this->organization;
     }
 
-    /**
-     * @param OrganizationInterface|null $organization
-     */
     public function setOrganization(?OrganizationInterface $organization): void
     {
         $this->organization = $organization;
     }
 
-    /**
-     * @return string|null
-     */
     public function getContactEmail(): ?string
     {
         return $this->contactEmail;
     }
 
-    /**
-     * @param string|null $contactEmail
-     */
     public function setContactEmail(?string $contactEmail): void
     {
         $this->contactEmail = $contactEmail;
     }
 
-    /**
-     * @return UserInterface|null
-     */
     public function getOwner(): ?UserInterface
     {
         return $this->owner;
     }
 
-    /**
-     * @param UserInterface|null $owner
-     */
     public function setOwner(?UserInterface $owner): void
     {
         $this->owner = $owner;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLanguage(): ?string
     {
         return $this->language;
     }
 
-    /**
-     * @param string|null $language
-     */
     public function setLanguage(?string $language): void
     {
         $this->language = $language;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLocation(): ?string
     {
         return $this->location;
     }
 
-    /**
-     * @param string|null $location
-     */
     public function setLocation(?string $location): void
     {
         $this->location = $location;
@@ -339,65 +291,41 @@ class Job implements ResourceInterface
         $this->locations = $locations;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLink(): ?string
     {
         return $this->link;
     }
 
-    /**
-     * @param string|null $link
-     */
     public function setLink(?string $link): void
     {
         $this->link = $link;
     }
 
-    /**
-     * @return \DateTimeInterface|null
-     */
     public function getDatePublishStart(): ?\DateTimeInterface
     {
         return $this->datePublishStart;
     }
 
-    /**
-     * @param \DateTimeInterface|null $datePublishStart
-     */
     public function setDatePublishStart(?\DateTimeInterface $datePublishStart): void
     {
         $this->datePublishStart = $datePublishStart;
     }
 
-    /**
-     * @return \DateTimeInterface|null
-     */
     public function getDatePublishEnd(): ?\DateTimeInterface
     {
         return $this->datePublishEnd;
     }
 
-    /**
-     * @param \DateTimeInterface|null $datePublishEnd
-     */
     public function setDatePublishEnd(?\DateTimeInterface $datePublishEnd): void
     {
         $this->datePublishEnd = $datePublishEnd;
     }
 
-    /**
-     * @return Status|null
-     */
     public function getStatus(): ?Status
     {
         return $this->status;
     }
 
-    /**
-     * @param Status|null $status
-     */
     public function setStatus(?Status $status): void
     {
         $this->status = $status;
@@ -419,97 +347,61 @@ class Job implements ResourceInterface
         $this->history = $history;
     }
 
-    /**
-     * @return bool
-     */
     public function isTermsAccepted(): bool
     {
         return $this->termsAccepted;
     }
 
-    /**
-     * @param bool $termsAccepted
-     */
     public function setTermsAccepted(bool $termsAccepted): void
     {
         $this->termsAccepted = $termsAccepted;
     }
 
-    /**
-     * @return string|null
-     */
     public function getReference(): ?string
     {
         return $this->reference;
     }
 
-    /**
-     * @param string|null $reference
-     */
     public function setReference(?string $reference): void
     {
         $this->reference = $reference;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLogoRef(): ?string
     {
         return $this->logoRef;
     }
 
-    /**
-     * @param string|null $logoRef
-     */
     public function setLogoRef(?string $logoRef): void
     {
         $this->logoRef = $logoRef;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTemplate(): ?string
     {
         return $this->template;
     }
 
-    /**
-     * @param string|null $template
-     */
     public function setTemplate(?string $template): void
     {
         $this->template = $template;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUriApply(): ?string
     {
         return $this->uriApply;
     }
 
-    /**
-     * @param string|null $uriApply
-     */
     public function setUriApply(?string $uriApply): void
     {
         $this->uriApply = $uriApply;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUriPublisher(): ?string
     {
         return $this->uriPublisher;
     }
 
-    /**
-     * @param string|null $uriPublisher
-     */
     public function setUriPublisher(?string $uriPublisher): void
     {
         $this->uriPublisher = $uriPublisher;
@@ -531,129 +423,81 @@ class Job implements ResourceInterface
         $this->publishers = $publishers;
     }
 
-    /**
-     * @return AtsMode|null
-     */
     public function getAtsMode(): ?AtsMode
     {
         return $this->atsMode;
     }
 
-    /**
-     * @param AtsMode|null $atsMode
-     */
     public function setAtsMode(?AtsMode $atsMode): void
     {
         $this->atsMode = $atsMode;
     }
 
-    /**
-     * @return bool
-     */
     public function isAtsEnabled(): bool
     {
         return $this->atsEnabled;
     }
 
-    /**
-     * @param bool $atsEnabled
-     */
     public function setAtsEnabled(bool $atsEnabled): void
     {
         $this->atsEnabled = $atsEnabled;
     }
 
-    /**
-     * @return Salary|null
-     */
     public function getSalary(): ?Salary
     {
         return $this->salary;
     }
 
-    /**
-     * @param Salary|null $salary
-     */
     public function setSalary(?Salary $salary): void
     {
         $this->salary = $salary;
     }
 
-    /**
-     * @return TemplateValues|null
-     */
     public function getTemplateValues(): ?TemplateValues
     {
         return $this->templateValues;
     }
 
-    /**
-     * @param TemplateValues|null $templateValues
-     */
     public function setTemplateValues(?TemplateValues $templateValues): void
     {
         $this->templateValues = $templateValues;
     }
 
-    /**
-     * @return array
-     */
     public function getPortals(): array
     {
         return $this->portals;
     }
 
-    /**
-     * @param array $portals
-     */
     public function setPortals(array $portals): void
     {
         $this->portals = $portals;
     }
 
-    /**
-     * @return bool
-     */
     public function isDraft(): bool
     {
         return $this->draft;
     }
 
-    /**
-     * @param bool $draft
-     */
     public function setDraft(bool $draft): void
     {
         $this->draft = $draft;
     }
 
-    /**
-     * @return Classification|null
-     */
     public function getClassification(): ?Classification
     {
         return $this->classification;
     }
 
-    /**
-     * @param Classification|null $classification
-     */
     public function setClassification(?Classification $classification): void
     {
         $this->classification = $classification;
     }
 
-    /**
-     * @return bool
-     */
     public function isDeleted(): bool
     {
         return $this->deleted;
     }
 
-    /**
-     * @param bool $deleted
-     */
     public function setDeleted(bool $deleted): void
     {
         $this->deleted = $deleted;

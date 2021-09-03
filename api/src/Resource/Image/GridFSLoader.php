@@ -16,7 +16,6 @@ namespace Yawik\Resource\Image;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Repository\GridFSRepository;
 use Liip\ImagineBundle\Binary\Loader\LoaderInterface;
-use Liip\ImagineBundle\Binary\MimeTypeGuesserInterface;
 use Liip\ImagineBundle\Exception\Binary\Loader\NotLoadableException;
 use Liip\ImagineBundle\Model\Binary;
 use MongoDB\BSON\ObjectId;
@@ -61,6 +60,7 @@ class GridFSLoader implements LoaderInterface
         fclose($stream);
         $contents = file_get_contents($fileName);
         $mimeType = $file->getMetadata()->getContentType();
+
         return new Binary(
             $contents,
             $mimeType,
@@ -70,7 +70,6 @@ class GridFSLoader implements LoaderInterface
 
     private function getExtension(?string $mimeType): ?string
     {
-
         if (null === $mimeType) {
             return null;
         }

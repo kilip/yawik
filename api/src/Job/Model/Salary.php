@@ -39,22 +39,15 @@ class Salary
      */
     protected ?string $unit = null;
 
-    /**
-     * @return string|null
-     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
-    /**
-     * @param string|null $currency
-     */
     public function setCurrency(?string $currency): void
     {
         $this->currency = $currency;
     }
-
 
     public function getValue(): float
     {
@@ -66,17 +59,11 @@ class Salary
         $this->value = $value;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUnit(): ?string
     {
         return $this->unit;
     }
 
-    /**
-     * @param string|null $unit
-     */
     public function setUnit(?string $unit): void
     {
         $this->unit = $unit;

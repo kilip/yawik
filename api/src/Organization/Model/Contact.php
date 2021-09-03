@@ -16,49 +16,49 @@ namespace Yawik\Organization\Model;
 class Contact
 {
     /**
-     * BuildingNumber of an organization address
+     * BuildingNumber of an organization address.
      *
      * @var string
      * @ODM\Field(type="string") */
     protected ?string $number = null;
 
     /**
-     * Postalcode of an organization address
+     * Postalcode of an organization address.
      *
      * @var string
      * @ODM\Field(type="string") */
     protected ?string $postalCode = null;
 
     /**
-     * Cityname of an organization address
+     * Cityname of an organization address.
      *
      * @var string
      * @ODM\Field(type="string") */
     protected ?string $city = null;
 
     /**
-     * Streetname of an organization address
+     * Streetname of an organization address.
      *
      * @var string
      * @ODM\Field(type="string") */
     protected ?string $street = null;
 
     /**
-     * Phone number of an organization address
+     * Phone number of an organization address.
      *
      * @var string
      * @ODM\Field(type="string") */
     protected ?string $phone = null;
 
     /**
-     * country of an organization address
+     * country of an organization address.
      *
      * @var string
      * @ODM\Field(type="string") */
     protected ?string $country = null;
 
     /**
-     * Fax number of an organization address
+     * Fax number of an organization address.
      *
      * @var string
      * @ODM\Field(type="string") */
@@ -68,6 +68,7 @@ class Contact
      * The website of the organization.
      *
      * @ODM\Field
+     *
      * @var string
      */
     protected ?string $website = null;

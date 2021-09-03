@@ -89,7 +89,7 @@ class Version20210902041810 extends AbstractMigration
             'cvs.attachments.chunks' => 'resume.attachments.chunks',
             'cvs.contact.images.files' => 'resume.contact.images.files',
             'cvs.contact.images.chunks' => 'resume.contact.images.chunks',
-            'organizations.names' => 'organizations.ranks'
+            'organizations.names' => 'organizations.ranks',
         ];
         $admin = new Database(
             $db->getManager(), // Our \Doctrine\MongoDB\Connection
@@ -168,7 +168,7 @@ class Version20210902041810 extends AbstractMigration
             '$rename' => [
                 'isDraft' => 'draft',
                 'isDeleted' => 'deleted',
-                'user' => 'owner'
+                'user' => 'owner',
             ],
         ]);
 
@@ -178,16 +178,16 @@ class Version20210902041810 extends AbstractMigration
                 ['locations.postalcode' => ['$exists' => true]],
                 ['locations.streetnumber' => ['$exists' => true]],
                 ['locations.streetname' => ['$exists' => true]],
-            ]
+            ],
         ];
-        $col->updateMany($filter,[
+        $col->updateMany($filter, [
             [
                 '$set' => [
                     'locations' => [
                         '$map' => [
                             'input' => '$locations',
                             'as' => 'locations',
-                            'in'=> [
+                            'in' => [
                                 'streetName' => '$$locations.streetname',
                                 'streetNumber' => '$$locations.streetnumber',
                                 'city' => '$$locations.city',
@@ -195,26 +195,26 @@ class Version20210902041810 extends AbstractMigration
                                 'postalCode' => '$$locations.postalcode',
                                 'country' => '$$locations.country',
                                 'coordinates' => '$$locations.coordinates',
-                            ]
+                            ],
                         ],
-                    ]
+                    ],
                 ],
             ],
         ]);
 
         // fixing status columns
         $filter = [
-            '"status.state"' => ['$exists' => false]
+            '"status.state"' => ['$exists' => false],
         ];
-        $col->updateMany($filter,[
+        $col->updateMany($filter, [
             '$rename' => [
-                'status.name' => 'status.state'
-            ]
+                'status.name' => 'status.state',
+            ],
         ]);
         $col->updateMany([], [
             [
-                '$unset' => ['status.name']
-            ]
+                '$unset' => ['status.name'],
+            ],
         ]);
     }
 
@@ -230,82 +230,80 @@ class Version20210902041810 extends AbstractMigration
                 '_organizationName' => 'name',
                 'organizationName' => 'organizationRank',
                 //'number' => 'contact.number',
-            ]
+            ],
         ]);
     }
 
     /**
      * - Remove all thumbnail images from db
-     * - Stores original image only in db
-     * @param Database $db
+     * - Stores original image only in db.
+     *
      * @psalm-suppress MixedArrayAccess
      */
     private function upgradeOrganizationsImage(Database $db)
     {
-        $col = $db->selectCollection('organizations.images.files');
+        $col    = $db->selectCollection('organizations.images.files');
         $filter = [
-            'metadata.key' => 'original'
+            'metadata.key' => 'original',
         ];
 
         /** @var array $image */
-        foreach($col->find($filter) as $image){
-            $imageSetId = (string)$image['metadata']['belongsTo'];
-            $org = $db->selectCollection('organizations');
-            $filter = ['images.id' => $imageSetId];
+        foreach ($col->find($filter) as $image) {
+            $imageSetId = (string) $image['metadata']['belongsTo'];
+            $org        = $db->selectCollection('organizations');
+            $filter     = ['images.id' => $imageSetId];
             $org->updateMany($filter, [
                 '$set' => [
                     'image' => $image['_id'],
-                ]
+                ],
             ]);
             $col->deleteMany([
                 'metadata.key' => 'thumbnail',
-                'metadata.belongsTo' => $imageSetId
+                'metadata.belongsTo' => $imageSetId,
             ]);
         }
-        $col->updateMany([],[
+        $col->updateMany([], [
             '$unset' => [
                 'metadata.key' => '',
-                'metadata.belongsTo' => ''
-            ]
+                'metadata.belongsTo' => '',
+            ],
         ]);
 
         // remove all images fields from organizations
         $db->selectCollection('organizations')
             ->updateMany([], [
                 '$unset' => [
-                    'images' => ''
-                ]
+                    'images' => '',
+                ],
             ]);
     }
 
     /**
      * Remove organizations.names collection,
-     * embed the values into organizations.rank
-     *
-     * @param Database $db
+     * embed the values into organizations.rank.
      */
     private function removeOrganizationsNames(Database $db)
     {
         $col = $db->selectCollection('organizations');
-        foreach($col->find(['organizationRank' => ['$exists' => true]]) as $org){
-            $rankId = $org['organizationRank'];
-            $rankCol = $db->selectCollection('organizations.ranks');
-            $rank = $rankCol->findOne(['_id' => $rankId]);
+        foreach ($col->find(['organizationRank' => ['$exists' => true]]) as $org) {
+            $rankId    = $org['organizationRank'];
+            $rankCol   = $db->selectCollection('organizations.ranks');
+            $rank      = $rankCol->findOne(['_id' => $rankId]);
             $embedRank = [
                 'rankingByCompany' => $rank['rankingByCompany'],
                 'ranking' => $rank['ranking'],
             ];
-            $col->updateOne(['_id' => $org['_id']],[
+            $col->updateOne(['_id' => $org['_id']], [
                 '$set' => [
                     'name' => $rank['name'],
                     'rank' => $embedRank,
-                ]
+                ],
             ]);
         }
         $col->updateMany([], [
             '$unset' => [
-                'organizationRank' => ''
-            ]
+                'organizationRank' => '',
+            ],
         ]);
         $db->dropCollection('organizations.ranks');
     }
