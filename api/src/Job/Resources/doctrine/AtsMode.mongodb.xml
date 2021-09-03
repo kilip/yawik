@@ -1,0 +1,9 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document name="Yawik\Job\Model\AtsMode">
+        <field name="mode" type="string"/>
+        <field name="uri" type="string"/>
+        <field name="email" type="string"/>
+        <field name="oneClickApply" type="bool"/>
+        <field name="oneClickApplyProfiles" type="hash"/>
+    </embedded-document>
+</doctrine-mongo-mapping>

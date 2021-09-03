@@ -1,0 +1,4 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\Job\Model\History">
+    </class>
+</serializer>

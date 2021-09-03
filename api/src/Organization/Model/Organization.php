@@ -53,9 +53,9 @@ class Organization implements OrganizationInterface
 
     protected ?UserInterface $owner = null;
 
-    protected ?TemplateInterface $template = null;
+    protected ?Template $template = null;
 
-    protected ?WorkflowInterface $workflowSettings = null;
+    protected ?Workflow $workflowSettings = null;
 
     protected ?string $profileSetting = null;
 

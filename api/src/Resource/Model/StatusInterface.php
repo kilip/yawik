@@ -50,10 +50,14 @@ interface StatusInterface
      */
     public const EXPIRED  = /*@translate*/ 'expired';
 
+    public function getState(): string;
+
+    public function is(string $state): bool;
+
     /**
      * Gets the Name of the job state.
      */
-    public function getName(): string;
+    public function getStates(): array;
 
     /**
      * Gets an integer of the job state.

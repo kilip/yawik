@@ -1,0 +1,7 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document name="Yawik\Job\Model\Salary">
+        <field name="currency" type="string"/>
+        <field name="unit" type="string"/>
+        <field name="value" type="float"/>
+    </embedded-document>
+</doctrine-mongo-mapping>

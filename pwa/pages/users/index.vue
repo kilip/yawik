@@ -1,19 +1,5 @@
 <template>
-  <div class="user-list font-sans">
-    <div>
-      <div>
-        <div class="flex flex-col lg:w-6">
-          <div class="flex-col" v-for="user in items">
-            <p>{{ user.username }} - {{ user.profile['firstName'] }} {{ user.profile['lastName']}}</p>
-            <img
-              v-if="user.profile.image"
-              :src="'https://localhost/media/resolve/user_image/' + user.profile.image.id"
-              width="48"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="user-list">
   </div>
 </template>
 
@@ -30,6 +16,9 @@ export default {
     ActionCell: () => import('../../components/ActionCell'),
     UserFilterForm: () => import('../../components/user/Filter'),
     DataFilter: () => import('../../components/DataFilter')
+  },
+  async fetch({store}){
+    await store.dispatch('user/fetchAll');
   },
   data: () => ({
     headers: [

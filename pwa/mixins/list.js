@@ -6,7 +6,7 @@ export default {
   mixins: [notification],
 
   async fetch({ store }) {
-    await store.dispatch("user/fetchAll");
+    throw new Error('Dispatch should be override');
   },
 
   data() {
@@ -15,7 +15,7 @@ export default {
         sortBy: [],
         sortDesc: [],
         page: 1,
-        itemsPerPage: 15,
+        itemsPerPage: 10,
       },
       filters: {},
     };

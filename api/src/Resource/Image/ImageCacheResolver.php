@@ -73,15 +73,9 @@ class ImageCacheResolver implements ResolverInterface
     public function remove(array $paths, array $filters)
     {
         $dm = $this->dm;
-        foreach($paths as $path){
-            foreach($filters as $filter){
-                $file = $this->findCache($path, $filter);
-                if(null !== $file){
-                    $dm->remove($file);
-                    $dm->flush();
-                }
-            }
-        }
+        $db = $dm->getDocumentDatabase(ImageCache::class);
+        $db->selectCollection('image.caches.files')->deleteMany([]);
+        $db->selectCollection('image.caches.chunks')->deleteMany([]);
     }
 
     /**

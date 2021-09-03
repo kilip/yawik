@@ -34,7 +34,11 @@ class Version20210902041810 extends AbstractMigration
     {
         $this->upgradeFileMetadata($db);
         $this->updateCollectionNames($db);
+        $this->upgradeOrganizations($db);
+        $this->upgradeOrganizationsImage($db);
+        $this->removeOrganizationsNames($db);
         $this->upgradeUsers($db);
+        $this->upgradeJobs($db);
     }
 
     public function down(Database $db)
@@ -62,12 +66,14 @@ class Version20210902041810 extends AbstractMigration
                     'dateUploaded' => 'metadata.dateUploaded',
                     'user' => 'metadata.owner',
                     'mimetype' => 'metadata.contentType',
-                ]
+                    'belongsTo' => 'metadata.belongsTo',
+                    'key' => 'metadata.key',
+                ],
             ]);
-            $collection->updateMany([],[
+            $collection->updateMany([], [
                 '$unset' => [
-                    'name' => ''
-                ]
+                    'name' => '',
+                ],
             ]);
         }
     }
@@ -83,6 +89,7 @@ class Version20210902041810 extends AbstractMigration
             'cvs.attachments.chunks' => 'resume.attachments.chunks',
             'cvs.contact.images.files' => 'resume.contact.images.files',
             'cvs.contact.images.chunks' => 'resume.contact.images.chunks',
+            'organizations.names' => 'organizations.ranks'
         ];
         $admin = new Database(
             $db->getManager(), // Our \Doctrine\MongoDB\Connection
@@ -150,5 +157,156 @@ class Version20210902041810 extends AbstractMigration
                 'profile.dob' => 'profile.birthday',
             ],
         ]);
+    }
+
+    private function upgradeJobs(Database $db)
+    {
+        $col = $db->selectCollection('jobs');
+
+        // rename fields
+        $col->updateMany([], [
+            '$rename' => [
+                'isDraft' => 'draft',
+                'isDeleted' => 'deleted',
+                'user' => 'owner'
+            ],
+        ]);
+
+        // update job collections
+        $filter = [
+            '$or' => [
+                ['locations.postalcode' => ['$exists' => true]],
+                ['locations.streetnumber' => ['$exists' => true]],
+                ['locations.streetname' => ['$exists' => true]],
+            ]
+        ];
+        $col->updateMany($filter,[
+            [
+                '$set' => [
+                    'locations' => [
+                        '$map' => [
+                            'input' => '$locations',
+                            'as' => 'locations',
+                            'in'=> [
+                                'streetName' => '$$locations.streetname',
+                                'streetNumber' => '$$locations.streetnumber',
+                                'city' => '$$locations.city',
+                                'region' => '$$locations.region',
+                                'postalCode' => '$$locations.postalcode',
+                                'country' => '$$locations.country',
+                                'coordinates' => '$$locations.coordinates',
+                            ]
+                        ],
+                    ]
+                ],
+            ],
+        ]);
+
+        // fixing status columns
+        $filter = [
+            '"status.state"' => ['$exists' => false]
+        ];
+        $col->updateMany($filter,[
+            '$rename' => [
+                'status.name' => 'status.state'
+            ]
+        ]);
+        $col->updateMany([], [
+            [
+                '$unset' => ['status.name']
+            ]
+        ]);
+    }
+
+    private function upgradeOrganizations(Database $db): void
+    {
+        $col = $db->selectCollection('organizations');
+        $col->updateMany([], [
+            '$rename' => [
+                'contact.houseNumber' => 'contact.number',
+                'contact.postalcode' => 'contact.postalCode',
+                'isDraft' => 'draft',
+                'user' => 'owner',
+                '_organizationName' => 'name',
+                'organizationName' => 'organizationRank',
+                //'number' => 'contact.number',
+            ]
+        ]);
+    }
+
+    /**
+     * - Remove all thumbnail images from db
+     * - Stores original image only in db
+     * @param Database $db
+     * @psalm-suppress MixedArrayAccess
+     */
+    private function upgradeOrganizationsImage(Database $db)
+    {
+        $col = $db->selectCollection('organizations.images.files');
+        $filter = [
+            'metadata.key' => 'original'
+        ];
+
+        /** @var array $image */
+        foreach($col->find($filter) as $image){
+            $imageSetId = (string)$image['metadata']['belongsTo'];
+            $org = $db->selectCollection('organizations');
+            $filter = ['images.id' => $imageSetId];
+            $org->updateMany($filter, [
+                '$set' => [
+                    'image' => $image['_id'],
+                ]
+            ]);
+            $col->deleteMany([
+                'metadata.key' => 'thumbnail',
+                'metadata.belongsTo' => $imageSetId
+            ]);
+        }
+        $col->updateMany([],[
+            '$unset' => [
+                'metadata.key' => '',
+                'metadata.belongsTo' => ''
+            ]
+        ]);
+
+        // remove all images fields from organizations
+        $db->selectCollection('organizations')
+            ->updateMany([], [
+                '$unset' => [
+                    'images' => ''
+                ]
+            ]);
+    }
+
+    /**
+     * Remove organizations.names collection,
+     * embed the values into organizations.rank
+     *
+     * @param Database $db
+     */
+    private function removeOrganizationsNames(Database $db)
+    {
+        $col = $db->selectCollection('organizations');
+        foreach($col->find(['organizationRank' => ['$exists' => true]]) as $org){
+            $rankId = $org['organizationRank'];
+            $rankCol = $db->selectCollection('organizations.ranks');
+            $rank = $rankCol->findOne(['_id' => $rankId]);
+            $embedRank = [
+                'rankingByCompany' => $rank['rankingByCompany'],
+                'ranking' => $rank['ranking'],
+            ];
+            $col->updateOne(['_id' => $org['_id']],[
+                '$set' => [
+                    'name' => $rank['name'],
+                    'rank' => $embedRank,
+                ]
+            ]);
+        }
+        $col->updateMany([], [
+            '$unset' => [
+                'organizationRank' => ''
+            ]
+        ]);
+        $db->dropCollection('organizations.ranks');
     }
 }

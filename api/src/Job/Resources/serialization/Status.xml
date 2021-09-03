@@ -1,0 +1,9 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\Job\Model\Status">
+        <attribute name="state">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+    </class>
+</serializer>

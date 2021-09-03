@@ -19,3 +19,13 @@ framework:
   serializer:
     mapping:
       paths: ['%yawik.organization.base_path%/Resources/serialization']
+
+liip_imagine:
+  filter_sets:
+    organization_image:
+      data_loader: organization_image_loader
+      filters:
+        thumbnail:
+          quality: 100
+          size: [120,120]
+          mode: inset

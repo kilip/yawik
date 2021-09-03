@@ -1,0 +1,26 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document
+        name="Yawik\Job\Model\TemplateValues"
+    >
+        <indexes>
+            <index name="fulltext">
+                <key name="requirements"/>
+                <key name="description"/>
+                <key name="qualifications"/>
+                <key name="benefits"/>
+                <key name="title"/>
+                <option name="language_override" value="lang_index"/>
+            </index>
+        </indexes>
+        <field name="qualifications" type="string" nullable="true"/>
+        <field name="requirements" type="string" nullable="true"/>
+        <field name="benefits" type="string" nullable="true"/>
+        <field name="title" type="string" nullable="true"/>
+        <field name="description" type="string" nullable="true"/>
+        <field name="language" type="string" nullable="true"/>
+        <field name="html" type="string" nullable="true"/>
+        <field name="introduction" type="string" nullable="true"/>
+        <field name="boilerplate" type="string" nullable="true"/>
+        <field name="freeValues" type="string" nullable="true"/>
+    </embedded-document>
+</doctrine-mongo-mapping>

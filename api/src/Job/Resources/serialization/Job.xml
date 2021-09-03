@@ -1,0 +1,126 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\Job\Model\Job">
+        <attribute name="id">
+            <group>job:read</group>
+            <group>job:list</group>
+        </attribute>
+        <attribute name="title">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="company">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="organization">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="contactEmail">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="owner">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="location">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="locations">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="link">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="datePublishStart">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="datePublishEnd">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="status">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="history">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="termsAccepted">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="reference">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="logoRef">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="template">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="uriApply">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="uriPublisher">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="publishers">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="atsMode">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="atsEnabled">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="salary">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="templateValues">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="portals">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="draft">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="classification">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="deleted">
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+    </class>
+</serializer>

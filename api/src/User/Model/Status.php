@@ -13,17 +13,14 @@ declare(strict_types=1);
 
 namespace Yawik\User\Model;
 
-use Yawik\Resource\Model\StatusInterface;
-use Yawik\Resource\Model\StatusTrait;
+use Yawik\Resource\Model\SortableStatus;
 
-class Status implements StatusInterface
+class Status extends SortableStatus
 {
-    use StatusTrait;
-
     public function __construct(
-        string $status = self::ACTIVE
+        string $state = self::ACTIVE
     ) {
-        $this->name = $status;
+        $this->state = $state;
     }
 
     public function getOrder(): array

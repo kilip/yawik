@@ -7,5 +7,6 @@
         <length/>
         <chunk-size/>
         <upload-date/>
+        <metadata target-document="Yawik\Resource\File\FileMetadataInterface"/>
     </gridfs-file>
 </doctrine-mongo-mapping>

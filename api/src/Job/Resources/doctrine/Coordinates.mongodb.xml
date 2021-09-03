@@ -1,0 +1,6 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document name="Yawik\Job\Model\Coordinates">
+        <field name="type" type="string"/>
+        <field name="coordinates" type="collection"/>
+    </embedded-document>
+</doctrine-mongo-mapping>

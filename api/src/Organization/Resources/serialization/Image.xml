@@ -1,0 +1,7 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\Organization\Model\Image">
+        <attribute name="id">
+            <group>job:list</group>
+        </attribute>
+    </class>
+</serializer>

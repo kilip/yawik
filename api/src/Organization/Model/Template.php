@@ -13,6 +13,6 @@ declare(strict_types=1);
 
 namespace Yawik\Organization\Model;
 
-class Template
+class Template implements TemplateInterface
 {
 }

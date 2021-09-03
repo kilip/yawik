@@ -1,0 +1,39 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\Job\Model\Location">
+        <attribute name="streetName">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="streetNumber">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="city">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="region">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="postalCode">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="country">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="coordinates">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+    </class>
+</serializer>

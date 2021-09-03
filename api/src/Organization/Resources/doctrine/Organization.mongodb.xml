@@ -1,5 +1,5 @@
 <doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
-    <document name="Yawik\Organization\Model\Organization">
+    <document name="Yawik\Organization\Model\Organization" collection="organizations">
         <id/>
         <field name="externalId" type="string" nullable="true"/>
         <field name="name" type="string" nullable="true"/>
@@ -30,12 +30,12 @@
         <embed-one
             field="template"
             nullable="true"
-            target-document="Yawik\Organization\Model\TemplateInterface"
+            target-document="Yawik\Organization\Model\Template"
         />
         <embed-one
             field="workflowSettings"
             nullable="true"
-            target-document="Yawik\Organization\Model\WorkflowInterface"
+            target-document="Yawik\Organization\Model\Workflow"
         />
         <field name="profileSetting" type="string" nullable="true"/>
     </document>

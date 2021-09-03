@@ -57,6 +57,7 @@
         "doctrine/mongodb-odm-bundle": "^4.3",
         "doyo/mongodb-migrations": "^4.0@dev",
         "doyo/mongodb-migrations-bundle": "^4.0@dev",
+        "jmikola/geojson": "^1.0",
         "liip/imagine-bundle": "^2.6",
         "nelmio/cors-bundle": "^2.1",
         "phpdocumentor/reflection-docblock": "^5.2",

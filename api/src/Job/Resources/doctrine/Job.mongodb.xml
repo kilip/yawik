@@ -1,0 +1,45 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <document
+        name="Yawik\Job\Model\Job"
+        collection="jobs"
+    >
+        <id/>
+        <field name="applyId" type="string" nullable="true"/>
+        <field name="title" type="string" nullable="true"/>
+        <field name="company" type="string" nullable="true"/>
+        <reference-one
+            field="organization"
+            target-document="Yawik\Organization\Model\OrganizationInterface"
+            store-as="id"
+            nullable="true"
+        />
+        <field name="contactEmail" type="string" nullable="true"/>
+        <reference-one
+            field="owner"
+            target-document="Yawik\User\Model\UserInterface"
+            store-as="id"
+            nullable="true"
+        />
+        <field name="language" type="string" nullable="true"/>
+        <field name="location" type="string" nullable="true"/>
+        <embed-many field="locations" target-document="Yawik\Job\Model\Location"/>
+        <field name="link" type="string" nullable="true"/>
+        <field name="datePublishStart" type="tz_date" nullable="true"/>
+        <field name="datePublishEnd" type="tz_date" nullable="true"/>
+        <embed-one field="status" target-document="Yawik\Job\Model\Status" nullable="true"/>
+        <embed-many field="history" target-document="Yawik\Job\Model\History" nullable="true"/>
+        <field name="termsAccepted" type="bool"/>
+        <field name="reference" type="string" nullable="true"/>
+        <field name="logoRef" type="string" nullable="true"/>
+        <field name="template" type="string" nullable="true"/>
+        <field name="uriApply" type="string" nullable="true"/>
+        <field name="uriPublisher" type="string" nullable="true"/>
+        <embed-many field="publishers" target-document="Yawik\Job\Model\Publisher"/>
+        <embed-one field="atsMode" target-document="Yawik\Job\Model\AtsMode" nullable="true"/>
+        <field name="atsEnabled" type="bool"/>
+        <embed-one field="salary" target-document="Yawik\Job\Model\Salary" nullable="true"/>
+        <embed-one field="templateValues" target-document="Yawik\Job\Model\TemplateValues" nullable="true"/>
+        <field name="portals" type="collection" nullable="true"/>
+        <field name="draft" type="bool"/>
+    </document>
+</doctrine-mongo-mapping>

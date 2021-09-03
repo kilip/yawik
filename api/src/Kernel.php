@@ -62,9 +62,9 @@ class Kernel extends BaseKernel
             $routes->import('../config/{routes}.php');
         }
 
-        foreach($this->modules as $module){
+        foreach ($this->modules as $module) {
             $dir = $module->getBasePath().'/Resources/routes';
-            if(is_dir($dir)){
+            if (is_dir($dir)) {
                 $routes->import($dir.'/*.yaml');
                 $routes->import($dir.'/{'.$env.'}/*.yaml');
             }

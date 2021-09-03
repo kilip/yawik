@@ -1,0 +1,18 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document
+        name="Yawik\Job\Model\Location"
+    >
+        <indexes>
+            <index name="coordinates">
+                <key name="coordinates" order="2dsphere"/>
+            </index>
+        </indexes>
+        <field name="streetName" type="string" nullable="true"/>
+        <field name="streetNumber" type="string" nullable="true"/>
+        <field name="city" type="string" nullable="true"/>
+        <field name="region" type="string" nullable="true"/>
+        <field name="postalCode" type="string" nullable="true"/>
+        <field name="country" type="string" nullable="true"/>
+        <embed-one field="coordinates" target-document="Yawik\Job\Model\Coordinates" nullable="true"/>
+    </embedded-document>
+</doctrine-mongo-mapping>

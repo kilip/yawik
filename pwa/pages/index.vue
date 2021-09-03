@@ -6,5 +6,8 @@
 
 <script>
 export default {
+  middleware({store, redirect}){
+    return redirect('/jobs');
+  }
 }
 </script>

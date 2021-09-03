@@ -17,34 +17,6 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Yawik\Resource\Controller\ImageCacheController as ImageController;
 use Yawik\Resource\File\File;
 
-#[ApiResource(
-    collectionOperations: [
-        'get',
-        'post' => [
-            'controller' => ImageController::class,
-            'deserialize' => false,
-            'openapi_context' => [
-                'description' => 'Upload user image',
-                'requestBody' => [
-                    'content' => [
-                        'multipart/form-data' => [
-                            'schema' => [
-                                'type' => 'object',
-                                'properties' => [
-                                    'file' => [
-                                        'type' => 'string',
-                                        'format' => 'binary',
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-        ],
-    ],
-    iri: 'https://schema.org/image'
-)]
 class Image extends File
 {
 }

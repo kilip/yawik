@@ -11,14 +11,15 @@
 
 declare(strict_types=1);
 
-namespace Yawik\Resource\Model;
+namespace spec\Yawik\Job;
 
-trait StatusTrait
+use PhpSpec\ObjectBehavior;
+use Yawik\Job\JobModule;
+
+class JobModuleSpec extends ObjectBehavior
 {
-    protected string $name;
-
-    public function getName(): string
+    public function it_is_initializable()
     {
-        return $this->name;
+        $this->shouldHaveType(JobModule::class);
     }
 }

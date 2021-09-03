@@ -30,4 +30,10 @@ class UserTest extends ApiTestCase
         $this->assertNotNull($image);
         $this->assertNotNull($image->getMetadata());
     }
+
+    public function test_get_job(): void
+    {
+        $response = static::createClient()->request('GET','/media/resolve/organization_image/56c1e7784e197fba70d3cc2f');
+        $this->assertResponseIsSuccessful();
+    }
 }

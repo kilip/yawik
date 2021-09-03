@@ -1,0 +1,19 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\Job\Model\Salary">
+        <attribute name="currency">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="value">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="unit">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+    </class>
+</serializer>

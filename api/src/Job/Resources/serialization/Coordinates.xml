@@ -1,0 +1,14 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\Job\Model\Coordinates">
+        <attribute name="type">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+        <attribute name="coordinates">
+            <group>job:list</group>
+            <group>job:read</group>
+            <group>job:write</group>
+        </attribute>
+    </class>
+</serializer>
