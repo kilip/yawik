@@ -139,22 +139,22 @@ class Organization implements OrganizationInterface
         $this->owner = $owner;
     }
 
-    public function getTemplate(): ?TemplateInterface
+    public function getTemplate(): ?Template
     {
         return $this->template;
     }
 
-    public function setTemplate(?TemplateInterface $template): void
+    public function setTemplate(?Template $template): void
     {
         $this->template = $template;
     }
 
-    public function getWorkflowSettings(): ?WorkflowInterface
+    public function getWorkflowSettings(): ?Workflow
     {
         return $this->workflowSettings;
     }
 
-    public function setWorkflowSettings(?WorkflowInterface $workflowSettings): void
+    public function setWorkflowSettings(?Workflow $workflowSettings): void
     {
         $this->workflowSettings = $workflowSettings;
     }

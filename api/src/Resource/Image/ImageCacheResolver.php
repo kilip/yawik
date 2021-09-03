@@ -60,6 +60,7 @@ class ImageCacheResolver implements ResolverInterface
         $dm         = $this->dm;
         $id         = md5($path.$filter);
 
+        /** @var ImageCache|null $file */
         $file = $this->findCache($path, $filter);
         if (null !== $file) {
             $dm->remove($file);
@@ -77,7 +78,7 @@ class ImageCacheResolver implements ResolverInterface
         $repository->uploadFromStream(md5($path.$filter), fopen($fileName, 'r'), $uploadOptions);
     }
 
-    public function remove(array $paths, array $filters)
+    public function remove(array $paths, array $filters): void
     {
         $dm = $this->dm;
         $db = $dm->getDocumentDatabase(ImageCache::class);
@@ -85,10 +86,7 @@ class ImageCacheResolver implements ResolverInterface
         $db->selectCollection('image.caches.chunks')->deleteMany([]);
     }
 
-    /**
-     * @return string
-     */
-    protected function getBaseUrl()
+    protected function getBaseUrl(): string
     {
         $port = '';
         if ('https' === $this->requestContext->getScheme() && 443 !== $this->requestContext->getHttpsPort()) {
@@ -113,12 +111,12 @@ class ImageCacheResolver implements ResolverInterface
         );
     }
 
-    protected function getFileUrl($path, $filter)
+    protected function getFileUrl(string $path, string $filter): string
     {
         return PathHelper::filePathToUrlPath($this->getFullPath($path, $filter));
     }
 
-    private function getFullPath($path, $filter)
+    private function getFullPath(string $path, string $filter): string
     {
         // crude way of sanitizing URL scheme ("protocol") part
         $path = str_replace('://', '---', $path);
@@ -127,7 +125,7 @@ class ImageCacheResolver implements ResolverInterface
     }
 
     /**
-     * @return ImageCache|null
+     * @return mixed|object|ImageCache|null
      */
     private function findCache(string $path, string $filter)
     {

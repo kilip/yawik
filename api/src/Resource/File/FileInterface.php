@@ -25,7 +25,7 @@ use Yawik\Resource\Model\ResourceInterface;
  */
 interface FileInterface extends ResourceInterface
 {
-    public function getName(): ?string;
+    public function getFilename(): ?string;
 
     public function getChunkSize(): ?int;
 
@@ -37,8 +37,5 @@ interface FileInterface extends ResourceInterface
 
     public function getPrettySize(): string;
 
-    /**
-     * @return FileMetadataInterface|object
-     */
-    public function getMetadata();
+    public function getMetadata(): FileMetadataInterface;
 }

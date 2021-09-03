@@ -409,15 +409,14 @@ class Job implements ResourceInterface
 
     /**
      * @return Collection|Publisher[]
+     *
+     * @psalm-return Collection|array<Publisher>
      */
-    public function getPublishers(): Collection
+    public function getPublishers(): array|Collection
     {
         return $this->publishers;
     }
 
-    /**
-     * @param Collection|Publisher[] $publishers
-     */
     public function setPublishers(Collection $publishers): void
     {
         $this->publishers = $publishers;

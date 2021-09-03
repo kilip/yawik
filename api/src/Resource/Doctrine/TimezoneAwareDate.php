@@ -46,13 +46,11 @@ class TimezoneAwareDate extends Type
      *          )
      *      </pre>
      *
-     * @param \DateTime|null $value
-     *
-     * @return array|null
-     *
      * @see \Doctrine\ODM\MongoDB\Types\Type::convertToDatabaseValue()
+     *
+     * @param mixed|\DateTimeInterface|null $value
      */
-    public function convertToDatabaseValue($value)
+    public function convertToDatabaseValue($value): ?array
     {
         if ( ! $value instanceof \DateTime) {
             return null;
@@ -92,11 +90,12 @@ class TimezoneAwareDate extends Type
      *
      * Returns <i>NULL</i>, if <code>$value</code> is an unknown format.
      *
-     * @param array $value
+     * @param array|mixed|null $value
      *
-     * @return \DateTime|null
+     * @throws \Exception
+     * @psalm-suppress UndefinedPropertyFetch
      */
-    public function convertToPhpValue($value)
+    public function convertToPhpValue($value): ?\DateTimeInterface
     {
         if ( ! \is_array($value)
             || ! isset($value['date'])
@@ -106,9 +105,13 @@ class TimezoneAwareDate extends Type
             return null;
         }
 
-        $timestamp = $value['date']->sec;
+        /** @var string $timezone */
+        $timezone = $value['tz'];
+        $dateVal  = $value['date'];
+        /** @var string $timestamp */
+        $timestamp = $dateVal->sec;
         $date      = new \DateTime('@'.$timestamp);
-        $date->setTimezone(new \DateTimeZone($value['tz']));
+        $date->setTimezone(new \DateTimeZone($timezone));
 
         return $date;
     }

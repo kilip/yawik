@@ -37,5 +37,5 @@ interface FileMetadataInterface
 
     public function setContentType(string $contentType): void;
 
-    public function getContentType(): ?string;
+    public function getContentType(): string;
 }

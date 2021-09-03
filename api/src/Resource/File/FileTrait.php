@@ -31,7 +31,7 @@ trait FileTrait
     /**
      * @ODM\File\UploadDate(type="tz_date")
      */
-    protected ?DateTimeInterface $uploadDate = null;
+    protected DateTimeInterface $uploadDate;
 
     /**
      * @ODM\File\Length
@@ -46,31 +46,31 @@ trait FileTrait
     /**
      * @ODM\EmbedOne(targetDocument="Yawik\Resource\File\FileMetadataInterface")
      */
-    protected ?FileMetadataInterface $metadata = null;
+    protected FileMetadataInterface $metadata;
 
     public function getId(): string
     {
         return $this->id;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @return \Yawik\User\Model\Image
-     */
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getUploadDate(): ?DateTimeInterface
+    public function getUploadDate(): DateTimeInterface
     {
         return $this->uploadDate;
+    }
+
+    public function setUploadDate(DateTimeInterface $uploadDate): void
+    {
+        $this->uploadDate = $uploadDate;
+    }
+
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    public function setFilename(?string $filename): void
+    {
+        $this->filename = $filename;
     }
 
     public function getLength(): ?int
@@ -105,12 +105,12 @@ trait FileTrait
         return (string) $size;
     }
 
-    public function getMetadata(): ?FileMetadataInterface
+    public function getMetadata(): FileMetadataInterface
     {
         return $this->metadata;
     }
 
-    public function setMetadata(?FileMetadataInterface $metadata): void
+    public function setMetadata(FileMetadataInterface $metadata): void
     {
         $this->metadata = $metadata;
     }

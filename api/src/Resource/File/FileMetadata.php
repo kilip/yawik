@@ -29,7 +29,7 @@ class FileMetadata implements FileMetadataInterface
     /**
      * @ODM\Field(type="string", nullable=true)
      */
-    protected ?string $contentType = null;
+    protected string $contentType;
 
     /**
      * owner of an attachment. Typically this is the candidate who applies for a job offer.
@@ -54,12 +54,12 @@ class FileMetadata implements FileMetadataInterface
      */
     protected ?string $name = null;
 
-    public function getContentType(): ?string
+    public function getContentType(): string
     {
         return $this->contentType;
     }
 
-    public function setContentType(?string $contentType): void
+    public function setContentType(string $contentType): void
     {
         $this->contentType = $contentType;
     }

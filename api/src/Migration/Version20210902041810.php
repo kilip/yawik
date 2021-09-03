@@ -18,7 +18,10 @@ use MongoDB\BSON\UTCDateTime;
 use MongoDB\Database;
 
 /**
- * Auto-generated Migration: Please modify to your needs!
+ * @psalm-suppress PossiblyInvalidArrayAccess,MixedAssignment,PossiblyNullArrayAccess
+ * @psalm-suppress MixedArgumentTypeCoercion
+ * @psalm-suppress MixedArgument
+ * @psalm-suppress PossiblyInvalidArgument
  */
 class Version20210902041810 extends AbstractMigration
 {
@@ -30,6 +33,9 @@ class Version20210902041810 extends AbstractMigration
         return 'Upgrade Yawik Database';
     }
 
+    /**
+     * @return void
+     */
     public function up(Database $db)
     {
         $this->upgradeFileMetadata($db);
@@ -41,12 +47,15 @@ class Version20210902041810 extends AbstractMigration
         $this->upgradeJobs($db);
     }
 
+    /**
+     * @return never
+     */
     public function down(Database $db)
     {
         throw new \Exception('Can not downgrade this upgrade');
     }
 
-    private function upgradeFileMetadata(Database $db)
+    private function upgradeFileMetadata(Database $db): void
     {
         $collectionNames = [
             'applications.files',
@@ -78,7 +87,7 @@ class Version20210902041810 extends AbstractMigration
         }
     }
 
-    private function updateCollectionNames(Database $db)
+    private function updateCollectionNames(Database $db): void
     {
         $renamedMaps = [
             'applications' => 'applicant',
@@ -113,7 +122,7 @@ class Version20210902041810 extends AbstractMigration
         }
     }
 
-    private function upgradeUsers(Database $db)
+    private function upgradeUsers(Database $db): void
     {
         $col = $db->selectCollection('users');
         $col->updateMany([], [
@@ -159,7 +168,7 @@ class Version20210902041810 extends AbstractMigration
         ]);
     }
 
-    private function upgradeJobs(Database $db)
+    private function upgradeJobs(Database $db): void
     {
         $col = $db->selectCollection('jobs');
 
@@ -240,7 +249,7 @@ class Version20210902041810 extends AbstractMigration
      *
      * @psalm-suppress MixedArrayAccess
      */
-    private function upgradeOrganizationsImage(Database $db)
+    private function upgradeOrganizationsImage(Database $db): void
     {
         $col    = $db->selectCollection('organizations.images.files');
         $filter = [
@@ -282,7 +291,7 @@ class Version20210902041810 extends AbstractMigration
      * Remove organizations.names collection,
      * embed the values into organizations.rank.
      */
-    private function removeOrganizationsNames(Database $db)
+    private function removeOrganizationsNames(Database $db): void
     {
         $col = $db->selectCollection('organizations');
         foreach ($col->find(['organizationRank' => ['$exists' => true]]) as $org) {

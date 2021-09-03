@@ -35,7 +35,7 @@ class ImageCacheController
     {
         /** @var GridFSRepository $repository */
         $repository = $this->repository;
-        /** @var ImageCache $file */
+        /** @var ImageCache|null $file */
         $file = $repository->findOneBy([
             'metadata.filter' => $filter,
             'metadata.path' => $path,
@@ -47,9 +47,12 @@ class ImageCacheController
 
         $response = new StreamedResponse();
         $response->headers->set('Content-Type', $file->getMetadata()->getContentType());
-        $response->headers->set('Content-Length', $file->getChunkSize());
+        $response->headers->set('Content-Length', (string) $file->getChunkSize());
         $response->headers->set('ETag', $file->getId());
-        $response->headers->set('Last-Modified', gmdate('D, d M Y H:i:s', $file->getUploadDate()->getTimestamp()).' GMT');
+
+        $timestamp    = $file->getUploadDate()->getTimestamp();
+        $lastModified = gmdate('D, d M Y H:i:s', $timestamp).' GMT';
+        $response->headers->set('Last-Modified', $lastModified);
 
         $response->setCallback(function () use ($repository, $file) {
             $stream = $repository->openDownloadStream($file->getId());

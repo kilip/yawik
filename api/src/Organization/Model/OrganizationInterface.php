@@ -49,13 +49,13 @@ interface OrganizationInterface
 
     public function setOwner(?UserInterface $owner): void;
 
-    public function getTemplate(): ?TemplateInterface;
+    public function getTemplate(): ?Template;
 
-    public function setTemplate(?TemplateInterface $template): void;
+    public function setTemplate(?Template $template): void;
 
-    public function getWorkflowSettings(): ?WorkflowInterface;
+    public function getWorkflowSettings(): ?Workflow;
 
-    public function setWorkflowSettings(?WorkflowInterface $workflowSettings): void;
+    public function setWorkflowSettings(?Workflow $workflowSettings): void;
 
     public function getProfileSetting(): ?string;
 

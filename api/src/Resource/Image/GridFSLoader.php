@@ -42,24 +42,26 @@ class GridFSLoader implements LoaderInterface
     /**
      * {@inheritdoc}
      *
-     * @param string $id
+     * @param string $path
+     * @psalm-suppress MoreSpecificImplementedParamType
      */
-    public function find($id)
+    public function find($path)
     {
         /** @var GridFSRepository $repository */
         $repository = $this->dm->getRepository($this->class);
-        /** @var FileInterface $file */
-        $file = $repository->find(new ObjectId($id));
+        /** @var FileInterface|null $file */
+        $file = $repository->find(new ObjectId($path));
 
         if (null === $file) {
-            throw new NotLoadableException(sprintf('Source file was not found with id "%s"', $id));
+            throw new NotLoadableException(sprintf('Source file was not found with id "%s"', $path));
         }
 
-        $stream = fopen($fileName = '/tmp/'.$id, 'w+');
-        $repository->downloadToStream($id, $stream);
+        $metadata = $file->getMetadata();
+        $stream   = fopen($fileName = '/tmp/'.$path, 'w+');
+        $repository->downloadToStream($path, $stream);
         fclose($stream);
         $contents = file_get_contents($fileName);
-        $mimeType = $file->getMetadata()->getContentType();
+        $mimeType = $metadata->getContentType();
 
         return new Binary(
             $contents,

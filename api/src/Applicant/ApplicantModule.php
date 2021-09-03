@@ -13,6 +13,10 @@ declare(strict_types=1);
 
 namespace Yawik\Applicant;
 
-class ApplicantModule
+use Yawik\Core\Contracts\ModuleInterface;
+use Yawik\Core\Contracts\ModuleTrait;
+
+class ApplicantModule implements ModuleInterface
 {
+    use ModuleTrait;
 }
