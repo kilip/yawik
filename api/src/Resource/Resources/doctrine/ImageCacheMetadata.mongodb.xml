@@ -1,0 +1,6 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document name="Yawik\Resource\Model\ImageCacheMetadata">
+        <field name="path" type="string"/>
+        <field name="filter" type="string"/>
+    </embedded-document>
+</doctrine-mongo-mapping>

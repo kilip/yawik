@@ -16,9 +16,21 @@ doctrine_mongodb:
 
 api_platform:
   mapping:
-    paths: ['%yawik.user.base_path%/Resources/api']
+    paths:
+      - '%yawik.user.base_path%/Resources/api'
+      - '%yawik.user.base_path%/Model'
 
 framework:
   serializer:
     mapping:
       paths: ['%yawik.user.base_path%/Resources/serialization']
+
+liip_imagine:
+  filter_sets:
+    user_image:
+      data_loader: user_image_loader
+      filters:
+        thumbnail:
+          size: [240,240]
+          mode: outbond
+

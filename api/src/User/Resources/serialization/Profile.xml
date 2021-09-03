@@ -1,0 +1,69 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\User\Model\Profile">
+        <attribute name="birthday">
+            <group>user:read</group>
+            <group>profile:read</group>
+            <group>profile:write</group>
+        </attribute>
+        <attribute name="email">
+            <group>user:read</group>
+            <group>profile:read</group>
+            <group>profile:write</group>
+        </attribute>
+        <attribute name="emailVerified">
+            <group>user:read</group>
+            <group>profile:read</group>
+            <group>profile:write</group>
+        </attribute>
+        <attribute name="firstName">
+            <group>user:read</group>
+            <group>profile:read</group>
+            <group>profile:write</group>
+        </attribute>
+        <attribute name="lastName">
+            <group>user:read</group>
+            <group>profile:read</group>
+            <group>profile:write</group>
+        </attribute>
+        <attribute name="gender">
+            <group>user:read</group>
+            <group>profile:read</group>
+            <group>profile:write</group>
+        </attribute>
+        <attribute name="houseNumber">
+            <group>user:read</group>
+            <group>profile:read</group>
+            <group>profile:write</group>
+        </attribute>
+        <attribute name="phone">
+            <group>user:read</group>
+            <group>profile:read</group>
+            <group>profile:write</group>
+        </attribute>
+        <attribute name="postalCode">
+            <group>user:read</group>
+            <group>profile:read</group>
+            <group>profile:write</group>
+        </attribute>
+        <attribute name="street">
+            <group>user:read</group>
+            <group>profile:read</group>
+            <group>profile:write</group>
+        </attribute>
+        <attribute name="city">
+            <group>user:read</group>
+            <group>profile:read</group>
+            <group>profile:write</group>
+        </attribute>
+        <attribute name="country">
+            <group>user:read</group>
+            <group>profile:read</group>
+            <group>profile:write</group>
+        </attribute>
+        <attribute name="image">
+            <group>user:read</group>
+            <group>profile:read</group>
+            <group>profile:image:write</group>
+        </attribute>
+    </class>
+</serializer>

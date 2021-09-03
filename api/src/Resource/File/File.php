@@ -13,12 +13,10 @@ declare(strict_types=1);
 
 namespace Yawik\Resource\File;
 
-use Yawik\Resource\File\FileInterface;
-use Yawik\Resource\File\FileTrait;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * @ODM\MappedSuperclass()
+ * @ODM\MappedSuperclass
  */
 class File implements FileInterface
 {

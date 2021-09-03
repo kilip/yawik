@@ -1,4 +1,14 @@
 <resources xmlns="https://api-platform.com/schema/metadata">
     <resource class="Yawik\User\Model\User">
+        <attribute name="order">
+            <attribute name="role">ASC</attribute>
+        </attribute>
+        <attribute name="normalization_context">
+            <attribute name="groups">user:read</attribute>
+        </attribute>
+        <attribute name="denormalization_context">
+            <attribute name="groups">user:write</attribute>
+        </attribute>
+
     </resource>
 </resources>

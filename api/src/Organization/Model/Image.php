@@ -14,8 +14,6 @@ declare(strict_types=1);
 namespace Yawik\Organization\Model;
 
 use Yawik\Resource\File\File;
-use Yawik\Resource\File\FileInterface;
-use Yawik\Resource\File\FileTrait;
 
 class Image extends File
 {

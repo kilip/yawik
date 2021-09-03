@@ -47,7 +47,7 @@
         }
     },
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-mongodb": "*",
@@ -57,6 +57,7 @@
         "doctrine/mongodb-odm-bundle": "^4.3",
         "doyo/mongodb-migrations": "^4.0@dev",
         "doyo/mongodb-migrations-bundle": "^4.0@dev",
+        "liip/imagine-bundle": "^2.6",
         "nelmio/cors-bundle": "^2.1",
         "phpdocumentor/reflection-docblock": "^5.2",
         "symfony/asset": "5.3.*",

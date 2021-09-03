@@ -1,0 +1,35 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\User\Model\User">
+        <attribute name="id">
+            <group>user:read</group>
+        </attribute>
+        <attribute name="username">
+            <group>user:read</group>
+            <group>user:write</group>
+        </attribute>
+        <attribute name="role">
+            <group>user:read</group>
+            <group>user:write</group>
+        </attribute>
+        <attribute name="profile">
+            <group>user:read</group>
+            <group>user:write</group>
+        </attribute>
+        <attribute name="email">
+            <group>user:read</group>
+            <group>user:write</group>
+        </attribute>
+        <attribute name="organization">
+            <group>user:read</group>
+            <group>user:write</group>
+        </attribute>
+        <attribute name="draft">
+            <group>user:read</group>
+            <group>user:write</group>
+        </attribute>
+        <attribute name="status">
+            <group>user:read</group>
+            <group>user:write</group>
+        </attribute>
+    </class>
+</serializer>

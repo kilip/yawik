@@ -1,0 +1,13 @@
+<container xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <service id="yawik.resource.image_cache_resolver" class="Yawik\Resource\Image\ImageCacheResolver">
+            <tag name="liip_imagine.cache.resolver" resolver="yawik_image_cache" />
+            <argument type="service" id="doctrine_mongodb.odm.document_manager"/>
+            <argument type="service" id="router.request_context" />
+        </service>
+        <service id="yawik.resource.controllers.image_cache" class="Yawik\Resource\Controller\ImageCacheController">
+            <tag name="controller.service_arguments"/>
+            <argument type="service" id="doctrine_mongodb.odm.document_manager"/>
+        </service>
+    </services>
+</container>

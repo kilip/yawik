@@ -39,6 +39,11 @@ class FileMetadata implements FileMetadataInterface
     protected ?UserInterface $owner = null;
 
     /**
+     * @ODM\Field(type="string", nullable=true)
+     */
+    protected ?string $md5 = null;
+
+    /**
      * @ODM\EmbedOne(targetDocument="Core\Entity\Permissions")
      */
     // @TODO: handle permissions
@@ -77,5 +82,25 @@ class FileMetadata implements FileMetadataInterface
     public function setName(?string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getDateUploaded(): ?\DateTimeInterface
+    {
+        return $this->dateUploaded;
+    }
+
+    public function setDateUploaded(?\DateTimeInterface $dateUploaded): void
+    {
+        $this->dateUploaded = $dateUploaded;
+    }
+
+    public function getMd5(): ?string
+    {
+        return $this->md5;
+    }
+
+    public function setMd5(?string $md5): void
+    {
+        $this->md5 = $md5;
     }
 }

@@ -3,5 +3,9 @@
         name="Yawik\Organization\Model\Image" bucket-name="organizations.images"
     >
         <id/>
+        <filename/>
+        <length/>
+        <chunk-size/>
+        <upload-date/>
     </gridfs-file>
 </doctrine-mongo-mapping>

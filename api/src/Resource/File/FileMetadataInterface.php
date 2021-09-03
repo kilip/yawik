@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Yawik\Resource\File;
 
-use Yawik\Resource\Model\ResourceInterface;
 use Yawik\User\Model\UserInterface;
 
 /**

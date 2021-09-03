@@ -4,19 +4,19 @@
         <field name="username" also-load="login" type="string"/>
         <field name="role" type="string"/>
         <embed-one
-            field="info"
-            field-name="info"
+            field="profile"
             target-document="Yawik\User\Model\ProfileInterface"
             nullable="true"
         />
-        <field name="password" also-load="credential" type="string" nullable="true"/>
+        <field name="password" type="string" nullable="true"/>
         <field name="email" type="string" nullable="true"/>
-        <field name="socialProfiles" also-load="profiles" type="hash"/>
+        <field name="socialProfiles" type="hash"/>
+        <field name="socialProfile" type="hash"/>
         <reference-many field="groups" target-document="Yawik\User\Model\GroupInterface" mapped-by="owner" store-as="id">
             <cascade>
                 <all/>
             </cascade>
         </reference-many>
-        <field name="draft" also-load="isDraft" type="bool"/>
+        <field name="draft" type="bool"/>
     </document>
 </doctrine-mongo-mapping>

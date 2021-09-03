@@ -7,7 +7,7 @@ doctrine_mongodb:
         password: "yawik"
         authSource: "admin"
 mongo_db_migrations:
-  collection_name: "migration_versions"
+  collection_name: "migrations"
   database_name: "%env(resolve:MONGODB_DB)%"
   dir_name: "%kernel.project_dir%/src/Migration"
   script_dir_name: "%kernel.project_dir%/scripts"

@@ -1,0 +1,8 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\User\Model\Image">
+        <attribute name="id">
+            <group>user:read</group>
+            <group>profile:read</group>
+        </attribute>
+    </class>
+</serializer>

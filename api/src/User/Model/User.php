@@ -29,13 +29,15 @@ class User implements UserInterface, SecurityUserInterface
 
     protected string $role;
 
-    protected ProfileInterface $info;
+    protected ProfileInterface $profile;
 
     protected ?string $password = null;
 
     protected ?string $email = null;
 
     protected array $socialProfiles = [];
+
+    protected array $socialProfile = [];
 
     // @TODO: integrate settings
     // protected Collection $settings;
@@ -119,14 +121,14 @@ class User implements UserInterface, SecurityUserInterface
         $this->role = $role;
     }
 
-    public function getInfo(): ProfileInterface
+    public function getProfile(): ProfileInterface
     {
-        return $this->info;
+        return $this->profile;
     }
 
-    public function setInfo(ProfileInterface $info): void
+    public function setProfile(ProfileInterface $profile): void
     {
-        $this->info = $info;
+        $this->profile = $profile;
     }
 
     public function setPassword(string $password): void
@@ -201,5 +203,15 @@ class User implements UserInterface, SecurityUserInterface
     public function setStatus($status): void
     {
         $this->status = $status;
+    }
+
+    public function getSocialProfile(): array
+    {
+        return $this->socialProfile;
+    }
+
+    public function setSocialProfile(array $socialProfile): void
+    {
+        $this->socialProfile = $socialProfile;
     }
 }

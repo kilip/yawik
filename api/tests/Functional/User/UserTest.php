@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * This file is part of the Yawik project.
+ *
+ * (c) 2013-2021 Cross Solution
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace Yawik\Tests\Functional\User;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
@@ -11,8 +22,8 @@ class UserTest extends ApiTestCase
     {
         static::createClient();
         $container = $this->getContainer()->get('doctrine_mongodb');
-        $dm = $container->getManagerForClass(Image::class);
-        $repo = $dm->getRepository(Image::class);
+        $dm        = $container->getManagerForClass(Image::class);
+        $repo      = $dm->getRepository(Image::class);
 
         /** @var Image $image */
         $image = $repo->find('55bcd602c5105c63237b240f');

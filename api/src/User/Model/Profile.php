@@ -15,20 +15,19 @@ namespace Yawik\User\Model;
 
 class Profile implements ProfileInterface
 {
-    protected ?\DateTimeInterface $birthday;
+    protected ?\DateTimeInterface $birthday = null;
     protected string $email;
-    protected bool $emailVerified = false;
-    protected ?string $firstName;
-    protected ?string $lastName;
-    protected ?string $gender;
-    protected ?string $houseNumber;
-    protected ?string $phone;
-    protected ?string $postalCode;
-    protected ?string $street;
-    protected ?string $city;
-    protected ?string $country;
+    protected bool $emailVerified  = false;
+    protected ?string $firstName   = null;
+    protected ?string $lastName    = null;
+    protected ?string $gender      = null;
+    protected ?string $houseNumber = null;
+    protected ?string $phone       = null;
+    protected ?string $postalCode  = null;
+    protected ?string $street      = null;
+    protected ?string $city        = null;
+    protected ?string $country     = null;
 
-    // @TODO: handle profile photo
     protected ?Image $image=null;
 
     public function getBirthday(): ?\DateTimeInterface

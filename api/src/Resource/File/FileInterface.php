@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Yawik\Resource\File;
 
 use DateTimeInterface;
-use Yawik\Resource\File\FileMetadataInterface;
 use Yawik\Resource\Model\ResourceInterface;
 
 /**

@@ -5,9 +5,6 @@
         shortName="Image"
     >
         <attribute name="route_prefix">users</attribute>
-        <collectionOperations>
-            <collectionOperation name="post"/>
-        </collectionOperations>
         <itemOperations>
             <itemOperation name="get">
                 <attribute name="description"/>

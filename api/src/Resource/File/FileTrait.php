@@ -15,7 +15,6 @@ namespace Yawik\Resource\File;
 
 use DateTimeInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Yawik\Resource\Model\ResourceTrait;
 
 trait FileTrait
 {
@@ -27,7 +26,7 @@ trait FileTrait
     /**
      * @ODM\File\Filename
      */
-    protected ?string $name = null;
+    protected ?string $filename = null;
 
     /**
      * @ODM\File\UploadDate(type="tz_date")
@@ -49,9 +48,6 @@ trait FileTrait
      */
     protected ?FileMetadataInterface $metadata = null;
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
@@ -109,17 +105,11 @@ trait FileTrait
         return (string) $size;
     }
 
-    /**
-     * @return FileMetadataInterface|null
-     */
     public function getMetadata(): ?FileMetadataInterface
     {
         return $this->metadata;
     }
 
-    /**
-     * @param FileMetadataInterface|null $metadata
-     */
     public function setMetadata(?FileMetadataInterface $metadata): void
     {
         $this->metadata = $metadata;

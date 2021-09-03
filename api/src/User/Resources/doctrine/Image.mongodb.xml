@@ -5,7 +5,7 @@
         <id/>
         <chunk-size/>
         <length/>
-        <filename field-name="name"/>
+        <filename/>
         <upload-date/>
         <metadata target-document="Yawik\Resource\File\FileMetadataInterface"/>
     </gridfs-file>

@@ -1,0 +1,12 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <gridfs-file
+        name="Yawik\Resource\Model\ImageCache" bucket-name="image.caches"
+    >
+        <id/>
+        <filename/>
+        <length/>
+        <chunk-size/>
+        <upload-date/>
+        <metadata target-document="Yawik\Resource\Model\ImageCacheMetadata"/>
+    </gridfs-file>
+</doctrine-mongo-mapping>

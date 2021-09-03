@@ -1,0 +1,12 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\Organization\Model\Organization">
+        <attribute name="externalId">
+            <group>user:read</group>
+            <group>organization:write</group>
+        </attribute>
+        <attribute name="name">
+            <group>user:read</group>
+            <group>organization:write</group>
+        </attribute>
+    </class>
+</serializer>

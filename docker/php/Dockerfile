@@ -32,13 +32,19 @@ RUN set -eux; \
 		libzip-dev \
 		postgresql-dev \
 		zlib-dev \
+        libpng-dev \
+        libwebp-dev \
+        libjpeg-turbo-dev \
+        freetype-dev \
 	; \
 	\
 	docker-php-ext-configure zip; \
+    docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp; \
 	docker-php-ext-install -j$(nproc) \
 		intl \
 		pdo_pgsql \
 		zip \
+        gd \
 	; \
 	pecl install \
 		apcu-${APCU_VERSION} \

@@ -1,0 +1,10 @@
+<container xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <service id="yawik.user.image_loader" class="Yawik\Resource\Image\GridFSLoader">
+            <argument type="service" id="doctrine_mongodb.odm.document_manager"/>
+            <argument type="service" id="mime_types"/>
+            <argument>Yawik\User\Model\Image</argument>
+            <tag name="liip_imagine.binary.loader" loader="user_image_loader"/>
+        </service>
+    </services>
+</container>

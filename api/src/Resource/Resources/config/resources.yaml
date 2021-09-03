@@ -1,3 +1,5 @@
+parameters:
+  yawik.api_prefix: '%env(resolve:API_PLATFORM_PREFIX)%'
 doctrine_mongodb:
   types:
     tz_date: Yawik\Resource\Doctrine\TimezoneAwareDate
@@ -18,8 +20,12 @@ doctrine_mongodb:
     Yawik\Resource\File\FileMetadataInterface: Yawik\Resource\File\FileMetadata
 
 api_platform:
+  defaults:
+    pagination_items_per_page: 10
   mapping:
-    paths: ['%yawik.resource.base_path%/Resources/api']
+    paths:
+      - '%yawik.resource.base_path%/Resources/api'
+      - '%yawik.resource.base_path%/File'
 
 framework:
   serializer:
