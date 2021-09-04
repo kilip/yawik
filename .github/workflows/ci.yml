@@ -105,6 +105,7 @@ jobs:
         working-directory: api
 
   deploy:
+    if: github.ref == 'ref/heads/ci-tests'
     needs:
       - psalm
       - phpstan
