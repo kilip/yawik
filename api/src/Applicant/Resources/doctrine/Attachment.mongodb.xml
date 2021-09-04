@@ -1,5 +1,5 @@
 <doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
-    <gridfs-file name="Yawik\Applicant\Model\Attachment" bucket-name="applicant.files">
+    <gridfs-file name="Yawik\Applicant\Model\Attachment" bucket-name="applicants.attachments">
         <id/>
     </gridfs-file>
 </doctrine-mongo-mapping>

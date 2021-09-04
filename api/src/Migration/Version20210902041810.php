@@ -46,6 +46,7 @@ class Version20210902041810 extends AbstractMigration
         $this->removeOrganizationsNames($db);
         $this->upgradeUsers($db);
         $this->upgradeJobs($db);
+        $this->upgradeApplicants($db);
     }
 
     /**
@@ -91,9 +92,9 @@ class Version20210902041810 extends AbstractMigration
     private function updateCollectionNames(Database $db): void
     {
         $renamedMaps = [
-            'applications' => 'applicant',
-            'applications.chunks' => 'applicant.chunks',
-            'applications.files' => 'applicant.files',
+            'applications' => 'applicants',
+            'applications.chunks' => 'applicants.attachments.chunks',
+            'applications.files' => 'applicants.attachments.files',
             'cvs' => 'resume',
             'cvs.attachments.files' => 'resume.attachments.files',
             'cvs.attachments.chunks' => 'resume.attachments.chunks',
@@ -324,5 +325,16 @@ class Version20210902041810 extends AbstractMigration
             ],
         ]);
         $db->dropCollection('organizations.ranks');
+    }
+
+    private function upgradeApplicants(Database $db)
+    {
+        $col = $db->selectCollection('applicants');
+
+        $col->updateMany([], [
+            '$rename' => [
+                'isDraft' => 'draft',
+            ],
+        ]);
     }
 }

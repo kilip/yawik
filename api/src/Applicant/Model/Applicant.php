@@ -38,28 +38,28 @@ class Applicant implements ResourceInterface
     /**
      * Status of an application.
      */
-    protected StatusInterface $status;
+    protected ?StatusInterface $status = null;
 
     /**
      * personal informations, contains firstname, lastname, email,
      * phone etc.
      */
-    protected ?Contact $contact;
+    protected ?Contact $contact = null;
 
     /**
      * The cover letter of an application.
      */
-    protected ?string $summary;
+    protected ?string $summary = null;
 
     /**
      * The facts of this application.
      */
-    protected Facts $facts;
+    protected ?Facts $facts = null;
 
     /**
      * Resume, containing employments, educations and skills.
      */
-    protected Resume $resume;
+    protected ?Resume $resume = null;
 
     /**
      * multiple Attachments of an application.
@@ -85,7 +85,7 @@ class Applicant implements ResourceInterface
     /**
      * Referring subscriber (Where did the application origin from).
      */
-    protected ?Subscriber $subscriber;
+    protected ?Subscriber $subscriber = null;
 
     /**
      * Recruiters can comment an application.
@@ -100,7 +100,7 @@ class Applicant implements ResourceInterface
     /**
      * Internal references (DB de-naturalism).
      */
-    protected ?InternalReferences $refs;
+    protected ?InternalReferences $refs = null;
 
     /**
      * Collection of social network profiles.
@@ -115,7 +115,7 @@ class Applicant implements ResourceInterface
     /**
      * Attributes like "privacy policy accepted" or "send by data as an CC".
      */
-    protected ?Attributes $attributes;
+    protected ?Attributes $attributes = null;
 
     public function __construct()
     {
@@ -123,6 +123,7 @@ class Applicant implements ResourceInterface
         $this->history        = new ArrayCollection();
         $this->comments       = new ArrayCollection();
         $this->socialProfiles = new ArrayCollection();
+        $this->status         = new Status();
     }
 
     public function getJob(): JobInterface
@@ -145,12 +146,18 @@ class Applicant implements ResourceInterface
         $this->owner = $owner;
     }
 
-    public function getStatus(): StatusInterface
+    /**
+     * @return Status|StatusInterface|null
+     */
+    public function getStatus(): StatusInterface|Status|null
     {
         return $this->status;
     }
 
-    public function setStatus(StatusInterface $status): void
+    /**
+     * @param Status|StatusInterface|null $status
+     */
+    public function setStatus(StatusInterface|Status|null $status): void
     {
         $this->status = $status;
     }
@@ -175,22 +182,22 @@ class Applicant implements ResourceInterface
         $this->summary = $summary;
     }
 
-    public function getFacts(): Facts
+    public function getFacts(): ?Facts
     {
         return $this->facts;
     }
 
-    public function setFacts(Facts $facts): void
+    public function setFacts(?Facts $facts): void
     {
         $this->facts = $facts;
     }
 
-    public function getResume(): Resume
+    public function getResume(): ?Resume
     {
         return $this->resume;
     }
 
-    public function setResume(Resume $resume): void
+    public function setResume(?Resume $resume): void
     {
         $this->resume = $resume;
     }

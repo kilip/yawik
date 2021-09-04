@@ -71,14 +71,15 @@ services:
     container_name: yawik.database
     image: mongo
     environment:
-      - MONGO_INITDB_DATABASE=yawik
-      - MONGO_INITDB_ROOT_USERNAME=yawik
-      - MONGO_INITDB_ROOT_PASSWORD=yawik
+      MONGO_INITDB_DATABASE: yawik
+      MONGO_INITDB_ROOT_USERNAME: yawik
+      MONGO_INITDB_ROOT_PASSWORD: yawik
     volumes:
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       - ./var/mongo/data:/data/db
     ports:
       - "27017:27017"
+
 
 volumes:
   php_socket:

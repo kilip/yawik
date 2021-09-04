@@ -1,0 +1,52 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\Applicant\Model\Contact">
+        <attribute name="birthday">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="email">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="emailVerified">
+            <group>admin:applicant</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="firstName">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="lastName">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="gender">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="houseNumber">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="phone">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="postalCode">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="street">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="city">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="country">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+    </class>
+</serializer>

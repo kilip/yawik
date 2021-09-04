@@ -12,3 +12,8 @@ api_platform:
   mapping:
     paths:
       - '%yawik.applicant.base_path%/Resources/api'
+
+framework:
+  serializer:
+    mapping:
+      paths: ['%yawik.applicant.base_path%/Resources/serialization']

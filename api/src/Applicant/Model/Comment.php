@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Yawik\Applicant\Model;
 
-use Yawik\User\Model\UserInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Yawik\User\Model\UserInterface;
 
 /**
  * Applicant comment entity.
@@ -30,15 +30,17 @@ class Comment
 
     /**
      * Created date.
+     *
      * @Gedmo\Timestampable(on="create")
      */
-    protected \DateTimeInterface $dateCreated;
+    protected ?\DateTimeInterface $dateCreated = null;
 
     /**
      * Modification date.
+     *
      * @Gedmo\Timestampable(on="update")
      */
-    protected \DateTimeInterface $dateModified;
+    protected ?\DateTimeInterface $dateModified = null;
 
     /**
      * Comment message.
@@ -60,22 +62,22 @@ class Comment
         $this->createdBy = $createdBy;
     }
 
-    public function getDateCreated(): \DateTimeInterface
+    public function getDateCreated(): ?\DateTimeInterface
     {
         return $this->dateCreated;
     }
 
-    public function setDateCreated(\DateTimeInterface $dateCreated): void
+    public function setDateCreated(?\DateTimeInterface $dateCreated): void
     {
         $this->dateCreated = $dateCreated;
     }
 
-    public function getDateModified(): \DateTimeInterface
+    public function getDateModified(): ?\DateTimeInterface
     {
         return $this->dateModified;
     }
 
-    public function setDateModified(\DateTimeInterface $dateModified): void
+    public function setDateModified(?\DateTimeInterface $dateModified): void
     {
         $this->dateModified = $dateModified;
     }

@@ -15,6 +15,7 @@ namespace Yawik\Job\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Yawik\Applicant\Model\Applicant;
 use Yawik\Organization\Model\OrganizationInterface;
 use Yawik\Resource\Model\ResourceTrait;
 use Yawik\User\Model\UserInterface;
@@ -204,9 +205,10 @@ class Job implements JobInterface
      */
     public function getApplyId(): ?string
     {
-        if(null === $this->applyId){
+        if (null === $this->applyId) {
             $this->setApplyId($this->id);
         }
+
         return $this->applyId;
     }
 

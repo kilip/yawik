@@ -7,6 +7,8 @@ doctrine_mongodb:
           type: xml
           dir: '%yawik.job.base_path%/Resources/doctrine'
           prefix: 'Yawik\Job\Model'
+  resolve_target_documents:
+    Yawik\Job\Model\JobInterface: Yawik\Job\Model\Job
 
 api_platform:
   mapping:

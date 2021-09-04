@@ -15,6 +15,11 @@
             </collectionOperation>
         </collectionOperations>
 
+        <itemOperations>
+            <itemOperation name="get"/>
+            <itemOperation name="patch"/>
+            <itemOperation name="delete"/>
+        </itemOperations>
         <property name="id" identifier="true"/>
     </resource>
 </resources>

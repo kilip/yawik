@@ -1,0 +1,20 @@
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping">
+    <class name="Yawik\Applicant\Model\Applicant">
+        <attribute name="job">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="contact">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="summary">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+        <attribute name="facts">
+            <group>applicant:apply</group>
+            <group>applicant:read</group>
+        </attribute>
+    </class>
+</serializer>

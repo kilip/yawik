@@ -22,6 +22,12 @@ abstract class SortableStatus implements StatusInterface
      */
     protected string $state;
 
+    public function __construct(
+        string $state = self::CREATED
+    ) {
+        $this->state = $state;
+    }
+
     public function getState(): string
     {
         return $this->state;

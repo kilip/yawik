@@ -1,4 +1,15 @@
 <resources xmlns="https://api-platform.com/schema/metadata">
     <resource class="Yawik\Applicant\Model\Applicant">
+        <attribute name="normalization_context">
+            <attribute name="groups">applicant:read</attribute>
+        </attribute>
+        <collectionOperations>
+            <collectionOperation name="post">
+                <attribute name="denormalization_context">
+                    <attribute name="groups">applicant:apply</attribute>
+                </attribute>
+                <attribute name="method">POST</attribute>
+            </collectionOperation>
+        </collectionOperations>
     </resource>
 </resources>

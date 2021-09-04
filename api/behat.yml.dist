@@ -10,7 +10,8 @@ default:
         - behatch:context:rest
         - behatch:context:xml
         - 'Behat\MinkExtension\Context\MinkContext'
-        - 'Yawik\Tests\Behat\DemoContext'
+        - 'Yawik\Tests\Behat\ApiContext'
+        - 'Yawik\Tests\Behat\ApplicantContext'
   extensions:
     'FriendsOfBehat\SymfonyExtension':
       bootstrap: 'config/bootstrap.php'
