@@ -42,6 +42,9 @@ class Kernel extends BaseKernel implements CompilerPassInterface
         return $this->modules;
     }
 
+    /**
+     * @return void
+     */
     public function process(ContainerBuilder $container)
     {
         $this->loadValidation($container);
@@ -143,10 +146,18 @@ class Kernel extends BaseKernel implements CompilerPassInterface
         }
     }
 
-    private function loadValidation(ContainerBuilder $container)
+    /**
+     * @psalm-suppress MixedArrayAccess
+     * @psalm-suppress MixedArrayAssignment
+     * @psalm-suppress MixedAssignment
+     * @psalm-suppress UnusedClosureParam
+     * @psalm-suppress MixedClosureParamType
+     * @psalm-suppress MissingClosureParamType
+     */
+    private function loadValidation(ContainerBuilder $container): void
     {
         $files        = [];
-        $fileRecorder = function ($extension, $path) use (&$files) {
+        $fileRecorder = function ($extension, $path) use (&$files): void {
             $files['xml'][] = $path;
         };
 
@@ -162,7 +173,11 @@ class Kernel extends BaseKernel implements CompilerPassInterface
         $validatorBuilder->addMethodCall('addXmlMappings', [$files['xml']]);
     }
 
-    private function registerMappingFilesFromDir(string $dir, \Closure $fileRecorder)
+    /**
+     * @psalm-suppress MixedMethodCall
+     * @psalm-suppress MixedAssignment
+     */
+    private function registerMappingFilesFromDir(string $dir, \Closure $fileRecorder): void
     {
         foreach (Finder::create()->followLinks()->files()->in($dir)->name('/\.(xml|ya?ml)$/')->sortByName() as $file) {
             $fileRecorder($file->getExtension(), $file->getRealPath());

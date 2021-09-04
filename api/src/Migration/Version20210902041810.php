@@ -327,7 +327,7 @@ class Version20210902041810 extends AbstractMigration
         $db->dropCollection('organizations.ranks');
     }
 
-    private function upgradeApplicants(Database $db)
+    private function upgradeApplicants(Database $db): void
     {
         $col = $db->selectCollection('applicants');
 
