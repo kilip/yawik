@@ -1,7 +1,9 @@
 name: test
 on:
   push:
+    branches: ['main']
   pull_request:
+    branches: ['main']
 
 jobs:
   php-cs-fixer:
@@ -105,7 +107,7 @@ jobs:
         working-directory: api
 
   deploy:
-    if: github.ref == 'refs/heads/ci-tests'
+    if: github.ref == 'refs/heads/main'
     needs:
       - psalm
       - phpstan
