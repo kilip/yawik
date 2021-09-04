@@ -32,7 +32,6 @@ class TestCommand extends Command
     }
 
     /**
-     * @return int
      * @psalm-suppress MixedArrayAccess
      * @psalm-suppress PossiblyInvalidArrayAccess
      */
