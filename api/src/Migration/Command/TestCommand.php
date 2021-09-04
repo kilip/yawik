@@ -32,10 +32,10 @@ class TestCommand extends Command
     }
 
     /**
-     * @return int
      * @psalm-suppress MixedArrayAccess
+     * @psalm-suppress PossiblyInvalidArrayAccess
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $manager = $this->manager;
 

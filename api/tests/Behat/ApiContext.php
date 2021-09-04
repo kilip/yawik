@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * This file is part of the Yawik project.
+ *
+ * (c) 2013-2021 Cross Solution
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace Yawik\Tests\Behat;
 
 use ApiPlatform\Core\Api\IriConverterInterface;
@@ -14,9 +25,6 @@ class ApiContext implements Context
         $this->iriConverter = $iriConverter;
     }
 
-    /**
-     * @return IriConverterInterface
-     */
     public function getIriConverter(): IriConverterInterface
     {
         return $this->iriConverter;

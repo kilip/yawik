@@ -17,7 +17,7 @@ use Yawik\Resource\Model\ResourceInterface;
 use Yawik\Resource\Model\ResourceTrait;
 use Yawik\User\Model\Profile;
 
-class Contact extends Profile  implements ResourceInterface
+class Contact extends Profile implements ResourceInterface
 {
     use ResourceTrait;
 }
