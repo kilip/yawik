@@ -1,0 +1,14 @@
+doctrine_mongodb:
+  document_managers:
+    default:
+      mappings:
+        applicant:
+          is_bundle: false
+          type: xml
+          dir: '%yawik.applicant.base_path%/Resources/doctrine'
+          prefix: 'Yawik\Applicant\Model'
+
+api_platform:
+  mapping:
+    paths:
+      - '%yawik.applicant.base_path%/Resources/api'

@@ -1,0 +1,44 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <document name="Yawik\Applicant\Model\Applicant" collection="applicant">
+        <id/>
+        <reference-one
+            field="job"
+            target-document="Yawik\Job\Model\Job"
+            store-as="id"
+        />
+        <reference-one
+            field="owner"
+            nullable="true"
+            store-as="id"
+            target-document="Yawik\User\Model\UserInterface"/>
+        <embed-one field="status" target-document="Yawik\Applicant\Model\Status"/>
+        <embed-one field="contact" target-document="Yawik\Applicant\Model\Contact" nullable="true"/>
+        <field name="summary" type="string" nullable="true"/>
+        <embed-one field="facts" target-document="Yawik\Applicant\Model\Facts" nullable="true"/>
+        <embed-one field="resume" target-document="Yawik\Applicant\Model\Resume" nullable="true"/>
+        <reference-many
+            field="attachments"
+            target-document="Yawik\Applicant\Model\Attachment"
+            store-as="id"
+        />
+        <field name="keywords" type="collection"/>
+        <embed-many field="history" target-document="Yawik\Applicant\Model\History"/>
+        <field name="readBy" type="collection"/>
+        <reference-one
+            field="subscriber"
+            nullable="true"
+            target-document="Yawik\Applicant\Model\Subscriber"
+        />
+        <embed-many field="comments" target-document="Yawik\Applicant\Model\Comment"/>
+        <field name="rating" type="int" />
+        <embed-one field="refs" target-document="Yawik\Applicant\Model\InternalReferences" nullable="true"/>
+        <embed-many
+            field="socialProfiles"
+            target-document="Yawik\User\Model\SocialProfileInterface"
+        >
+            <discriminator-field name="_entity"/>
+        </embed-many>
+        <field name="draft" type="bool"/>
+        <embed-one field="attributes" target-document="Yawik\Applicant\Model\Attributes"/>
+    </document>
+</doctrine-mongo-mapping>

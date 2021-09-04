@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Yawik\Resource\Model;
 
-interface StatusInterface
+interface StatusInterface extends ResourceInterface
 {
     /**
      * A new job was created.

@@ -1,0 +1,6 @@
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
+    <embedded-document name="Yawik\Applicant\Model\Attributes">
+        <field name="privacyPolicyAccepted" type="bool"/>
+        <field name="sendCarbonCopy" type="bool"/>
+    </embedded-document>
+</doctrine-mongo-mapping>

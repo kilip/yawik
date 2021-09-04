@@ -1,7 +1,7 @@
 <doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
     <mapped-superclass name="Yawik\Resource\Model\History">
+        <id/>
         <field name="date" type="tz_date"/>
-        <embed-one field="status" target-document="Yawik\Resource\Model\Status"/>
         <field name="message" type="string"/>
     </mapped-superclass>
 </doctrine-mongo-mapping>

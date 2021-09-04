@@ -1,0 +1,4 @@
+<resources xmlns="https://api-platform.com/schema/metadata">
+    <resource class="Yawik\Applicant\Model\Applicant">
+    </resource>
+</resources>

@@ -11,10 +11,8 @@
 
 declare(strict_types=1);
 
-namespace Yawik\Organization\Model;
+namespace Yawik\User\Model;
 
-use Yawik\Resource\Model\ResourceInterface;
-
-interface WorkflowInterface extends ResourceInterface
+interface SocialProfileInterface
 {
 }

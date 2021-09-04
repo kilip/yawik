@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Yawik\Migration;
 
 use AntiMattr\MongoDB\Migrations\AbstractMigration;
+use MongoDB\BSON\ObjectId;
 use MongoDB\BSON\UTCDateTime;
 use MongoDB\Database;
 
@@ -48,9 +49,9 @@ class Version20210902041810 extends AbstractMigration
     }
 
     /**
-     * @return never
+     * It can not be downgraded.
      */
-    public function down(Database $db)
+    public function down(Database $db): void
     {
         throw new \Exception('Can not downgrade this upgrade');
     }
@@ -241,6 +242,13 @@ class Version20210902041810 extends AbstractMigration
                 //'number' => 'contact.number',
             ],
         ]);
+        foreach ($col->find() as $doc) {
+            $col->updateOne(['_id' => $doc['_id']], [
+                '$set' => [
+                    'template._id' => new ObjectId(),
+                ],
+            ]);
+        }
     }
 
     /**
@@ -299,6 +307,7 @@ class Version20210902041810 extends AbstractMigration
             $rankCol   = $db->selectCollection('organizations.ranks');
             $rank      = $rankCol->findOne(['_id' => $rankId]);
             $embedRank = [
+                'id' => new ObjectId(),
                 'rankingByCompany' => $rank['rankingByCompany'],
                 'ranking' => $rank['ranking'],
             ];

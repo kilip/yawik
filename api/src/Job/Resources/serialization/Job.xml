@@ -4,6 +4,10 @@
             <group>job:read</group>
             <group>job:list</group>
         </attribute>
+        <attribute name="applyId">
+            <group>job:list</group>
+            <group>job:read</group>
+        </attribute>
         <attribute name="title">
             <group>job:list</group>
             <group>job:read</group>

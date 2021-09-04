@@ -1,0 +1,12 @@
+<doctrine-mongo-mapping
+    xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping"
+    xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
+>
+    <embedded-document name="Yawik\Applicant\Model\Comment">
+        <embed-one field="createdBy" target-document="Yawik\User\Model\UserInterface"/>
+        <field name="message" type="string"/>
+        <embed-one field="rating" target-document="Yawik\Applicant\Model\Rating"/>
+        <field name="dateCreated" type="tz_date" nullable="true"/>
+        <field name="dateModified" type="tz_date" nullable="true"/>
+    </embedded-document>
+</doctrine-mongo-mapping>

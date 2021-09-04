@@ -16,11 +16,10 @@ namespace Yawik\Job\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Yawik\Organization\Model\OrganizationInterface;
-use Yawik\Resource\Model\ResourceInterface;
 use Yawik\Resource\Model\ResourceTrait;
 use Yawik\User\Model\UserInterface;
 
-class Job implements ResourceInterface
+class Job implements JobInterface
 {
     use ResourceTrait;
 
@@ -200,8 +199,14 @@ class Job implements ResourceInterface
         return $company;
     }
 
+    /**
+     * @psalm-suppress NullableReturnStatement
+     */
     public function getApplyId(): ?string
     {
+        if(null === $this->applyId){
+            $this->setApplyId($this->id);
+        }
         return $this->applyId;
     }
 

@@ -13,13 +13,18 @@ declare(strict_types=1);
 
 namespace Yawik\Job\Model;
 
+use Yawik\Resource\Model\ResourceInterface;
+use Yawik\Resource\Model\ResourceTrait;
+
 /**
  * Application tracking setting of a job entity.
  *
  * @author Mathias Gelhausen <gelhausen@cross-solution.de>
  */
-class AtsMode
+class AtsMode implements ResourceInterface
 {
+    use ResourceTrait;
+
     public const MODE_INTERN = 'intern';
     public const MODE_URI    = 'uri';
     public const MODE_EMAIL  = 'email';

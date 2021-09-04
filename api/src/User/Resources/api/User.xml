@@ -9,6 +9,5 @@
         <attribute name="denormalization_context">
             <attribute name="groups">user:write</attribute>
         </attribute>
-
     </resource>
 </resources>

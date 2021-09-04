@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Yawik\Organization\Model;
 
+use Yawik\Resource\Model\ResourceTrait;
+
 class Workflow implements WorkflowInterface
 {
+    use ResourceTrait;
 }

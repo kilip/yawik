@@ -15,6 +15,8 @@ namespace Yawik\Resource\Model;
 
 abstract class SortableStatus implements StatusInterface
 {
+    use ResourceTrait;
+
     /**
      * name of the job status.
      */

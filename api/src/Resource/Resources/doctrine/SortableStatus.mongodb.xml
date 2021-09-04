@@ -1,5 +1,6 @@
 <doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping">
     <mapped-superclass name="Yawik\Resource\Model\SortableStatus">
+        <id/>
         <field name="state" also-load="name" type="string"/>
     </mapped-superclass>
 </doctrine-mongo-mapping>

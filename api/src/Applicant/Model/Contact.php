@@ -11,10 +11,12 @@
 
 declare(strict_types=1);
 
-namespace Yawik\Organization\Model;
+namespace Yawik\Applicant\Model;
 
 use Yawik\Resource\Model\ResourceInterface;
+use Yawik\Resource\Model\ResourceTrait;
 
-interface WorkflowInterface extends ResourceInterface
+class Contact implements ResourceInterface
 {
+    use ResourceTrait;
 }

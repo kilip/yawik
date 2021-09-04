@@ -1,0 +1,8 @@
+doctrine_mongodb:
+  types:
+    tz_date: Yawik\Resource\Doctrine\TimezoneAwareDate
+
+stof_doctrine_extensions:
+  mongodb:
+    default:
+      timestampable: true

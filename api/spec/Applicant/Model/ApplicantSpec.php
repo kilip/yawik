@@ -11,10 +11,15 @@
 
 declare(strict_types=1);
 
-namespace Yawik\Organization\Model;
+namespace spec\Yawik\Applicant\Model;
 
-use Yawik\Resource\Model\ResourceInterface;
+use PhpSpec\ObjectBehavior;
+use Yawik\Applicant\Model\Applicant;
 
-interface WorkflowInterface extends ResourceInterface
+class ApplicantSpec extends ObjectBehavior
 {
+    public function it_is_initializable()
+    {
+        $this->shouldHaveType(Applicant::class);
+    }
 }

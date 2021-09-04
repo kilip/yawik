@@ -14,5 +14,7 @@
                 </attribute>
             </collectionOperation>
         </collectionOperations>
+
+        <property name="id" identifier="true"/>
     </resource>
 </resources>

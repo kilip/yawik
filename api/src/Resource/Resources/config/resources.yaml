@@ -1,8 +1,6 @@
 parameters:
   yawik.api_prefix: '%env(resolve:API_PLATFORM_PREFIX)%'
 doctrine_mongodb:
-  types:
-    tz_date: Yawik\Resource\Doctrine\TimezoneAwareDate
   document_managers:
     default:
       mappings:

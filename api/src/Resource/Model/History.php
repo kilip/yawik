@@ -13,8 +13,10 @@ declare(strict_types=1);
 
 namespace Yawik\Resource\Model;
 
-abstract class History
+abstract class History implements ResourceInterface
 {
+    use ResourceTrait;
+
     protected \DateTimeInterface $date;
 
     /**

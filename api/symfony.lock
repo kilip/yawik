@@ -19,6 +19,9 @@
             "src/Entity/.gitignore"
         ]
     },
+    "behat/transliterator": {
+        "version": "v1.3.0"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.3"
     },
@@ -48,6 +51,9 @@
     },
     "doctrine/collections": {
         "version": "1.6.8"
+    },
+    "doctrine/common": {
+        "version": "3.1.2"
     },
     "doctrine/deprecations": {
         "version": "v0.5.3"
@@ -116,6 +122,9 @@
     },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
+    },
+    "gedmo/doctrine-extensions": {
+        "version": "v3.1.0"
     },
     "imagine/imagine": {
         "version": "1.2.4"
@@ -305,6 +314,18 @@
     },
     "sebastian/version": {
         "version": "3.0.2"
+    },
+    "stof/doctrine-extensions-bundle": {
+        "version": "1.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.2",
+            "ref": "6c1ceb662f8997085f739cd089bfbef67f245983"
+        },
+        "files": [
+            "config/packages/stof_doctrine_extensions.yaml"
+        ]
     },
     "symfony/asset": {
         "version": "v5.3.4"

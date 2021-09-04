@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Yawik\Migration\Command;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
+use MongoDB\BSON\ObjectId;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -38,13 +39,16 @@ class TestCommand extends Command
     {
         $manager = $this->manager;
 
-        $db = $manager->getDocumentDatabase(Organization::class);
-        $db->selectCollection('organizations')
-            ->updateMany([], [
-                '$unset' => [
-                    'images' => '',
+        $db  = $manager->getDocumentDatabase(Organization::class);
+        $col = $db->selectCollection('organizations');
+
+        foreach ($col->find() as $doc) {
+            $col->updateOne(['_id' => $doc['_id']], [
+                '$set' => [
+                    'template._id' => new ObjectId(),
                 ],
             ]);
+        }
 
         return Command::SUCCESS;
     }

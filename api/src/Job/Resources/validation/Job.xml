@@ -1,0 +1,7 @@
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping">
+    <class name="Yawik\Job\Model\Job">
+        <property name="title">
+            <constraint name="NotBlank"/>
+        </property>
+    </class>
+</constraint-mapping>

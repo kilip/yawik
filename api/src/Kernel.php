@@ -14,6 +14,9 @@ declare(strict_types=1);
 namespace Yawik;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Component\Config\Resource\DirectoryResource;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -21,7 +24,7 @@ use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Yawik\Core\Contracts\ModuleInterface;
 
-class Kernel extends BaseKernel
+class Kernel extends BaseKernel implements CompilerPassInterface
 {
     use MicroKernelTrait;
 
@@ -29,7 +32,20 @@ class Kernel extends BaseKernel
      * @var array|ModuleInterface[]
      * @psalm-var array<array-key,ModuleInterface>
      */
-    protected iterable $modules = [];
+    protected array $modules = [];
+
+    /**
+     * @return array|ModuleInterface[]
+     */
+    public function getModules(): array
+    {
+        return $this->modules;
+    }
+
+    public function process(ContainerBuilder $container)
+    {
+        $this->loadValidation($container);
+    }
 
     protected function configureContainer(ContainerConfigurator $container): void
     {
@@ -124,6 +140,32 @@ class Kernel extends BaseKernel
                 $configurator->import($path.'/'.$env.'/*.xml');
                 $configurator->import($path.'/'.$env.'/*.yaml');
             }
+        }
+    }
+
+    private function loadValidation(ContainerBuilder $container)
+    {
+        $files        = [];
+        $fileRecorder = function ($extension, $path) use (&$files) {
+            $files['xml'][] = $path;
+        };
+
+        foreach ($this->modules as $module) {
+            $path = $module->getBasePath().'/Resources/validation';
+            if (is_dir($path)) {
+                $container->addResource(new DirectoryResource($path));
+                $this->registerMappingFilesFromDir($path, $fileRecorder);
+            }
+        }
+
+        $validatorBuilder = $container->getDefinition('validator.builder');
+        $validatorBuilder->addMethodCall('addXmlMappings', [$files['xml']]);
+    }
+
+    private function registerMappingFilesFromDir(string $dir, \Closure $fileRecorder)
+    {
+        foreach (Finder::create()->followLinks()->files()->in($dir)->name('/\.(xml|ya?ml)$/')->sortByName() as $file) {
+            $fileRecorder($file->getExtension(), $file->getRealPath());
         }
     }
 }
