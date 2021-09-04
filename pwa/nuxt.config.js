@@ -1,5 +1,8 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
+  env: {
+    apiEntryPoint: process.env.API_ENTRY_POINT || 'https://localhost/api'
+  },
   ssr: false,
   server: {
     host: 0
