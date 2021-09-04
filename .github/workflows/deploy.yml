@@ -5,8 +5,11 @@ on:
       - ci-tests
 
 jobs:
-  build:
-    needs: test
+  deploy:
+    needs:
+      - psalm
+      - phpstan
+      - php-cs-fixer
     runs-on: ubuntu-latest
     environment:
       name: production
