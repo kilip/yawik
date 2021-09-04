@@ -51,6 +51,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-mongodb": "*",
+        "ext-gd": "*",
         "api-platform/core": "^2.6",
         "composer/package-versions-deprecated": "1.11.99.3",
         "doctrine/annotations": "^1.0",
