@@ -5,7 +5,7 @@
         <div class="flex w-32 content-center align-middle justify-center">
           <img
             :alt="job.company"
-            :src="`https://localhost/media/resolve/organization_image/`+job.organization.image.id" v-if="job.organization && job.organization.image"
+            :src="apiRoot+`/media/resolve/organization_image/`+job.organization.image.id" v-if="job.organization && job.organization.image"
             style="max-height: 48px;"
           />
         </div>
@@ -31,6 +31,7 @@
 import { mapActions, mapGetters } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
 import list from '../../mixins/list';
+import {API_ROOT} from "../../config/entrypoint";
 
 export default {
   servicePrefix: 'jobs',
@@ -76,7 +77,8 @@ export default {
         sortable: false
       }
     ],
-    selected: []
+    selected: [],
+    apiRoot: API_ROOT
   }),
   async fetch({store}){
     await store.dispatch("job/fetchAll");
