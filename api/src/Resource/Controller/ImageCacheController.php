@@ -47,7 +47,6 @@ class ImageCacheController
 
         $response = new StreamedResponse();
         $response->headers->set('Content-Type', $file->getMetadata()->getContentType());
-        $response->headers->set('Content-Length', (string) $file->getChunkSize());
         $response->headers->set('ETag', $file->getId());
 
         $timestamp    = $file->getUploadDate()->getTimestamp();
