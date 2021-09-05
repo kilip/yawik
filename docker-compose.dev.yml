@@ -2,9 +2,7 @@ version: '3.4'
 services:
   php:
     image: ghcr.io/kilip/yawik-php-dev
-    volumes:
-      - ./api:/srv/api:rw,cached
-      - ./docker/php/conf.d/api-platform.dev.ini:/usr/local/etc/php/conf.d/api-platform.ini
+    #volumes:
       # if you develop on Linux, you may use a bind-mounted host directory instead
       # - ./api/var:/srv/api/var:rw
     environment:
@@ -16,18 +14,8 @@ services:
     image: ghcr.io/kilip/yawik-pwa-dev
     build:
       target: "yawik_pwa_dev"
-    volumes:
-      - "./pwa:/usr/src/pwa:rw,cached"
 
   caddy:
     image: ghcr.io/kilip/yawik-caddy-dev
-    volumes:
-      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - ./api/public:/srv/api/public:ro
     environment:
       MERCURE_EXTRA_DIRECTIVES: demo /srv/mercure-assets/
-
-  database:
-    volumes:
-      - ./var/mongo/data:/data/db:rw
-      - ./docker/mongo:/dump:rw

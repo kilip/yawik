@@ -1,11 +1,4 @@
 doctrine_mongodb:
-  connections:
-    default:
-      server: '%env(resolve:MONGODB_URL)%'
-      options:
-        w: majority
-        username: '%env(resolve:MONGODB_USER)%'
-        password: '%env(resolve:MONGODB_PASSWORD)%'
   auto_generate_proxy_classes: false
   auto_generate_hydrator_classes: false
   document_managers:

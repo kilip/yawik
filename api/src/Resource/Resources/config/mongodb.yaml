@@ -1,3 +1,5 @@
+parameters:
+  doctrine_mongodb.odm.connection.class: Yawik\Resource\Doctrine\Client
 doctrine_mongodb:
   types:
     tz_date: Yawik\Resource\Doctrine\TimezoneAwareDate

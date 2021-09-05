@@ -15,6 +15,8 @@ services:
     restart: unless-stopped
     volumes:
       - php_socket:/var/run/php
+      - ./api:/srv/api:rw,cached
+      - ./docker/php/conf.d/api-platform.dev.ini:/usr/local/etc/php/conf.d/api-platform.ini
     healthcheck:
       interval: 10s
       timeout: 3s
@@ -28,6 +30,8 @@ services:
       context: ./
       target: yawik_pwa_prod
       dockerfile: ./docker/pwa/Dockerfile
+    volumes:
+        - "./pwa:/usr/src/pwa:rw,cached"
     environment:
       NEXT_PUBLIC_ENTRYPOINT: http://caddy
     ports:
@@ -51,8 +55,10 @@ services:
     restart: unless-stopped
     volumes:
       - php_socket:/var/run/php
-      - ./var/caddy/data:/data
-      - ./var/caddy/config:/config
+      - ./var/caddy/data:/data:rw
+      - ./var/caddy/config:/config:rw
+      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./api/public:/srv/api/public:ro
     ports:
       # HTTP
       - target: 80
@@ -75,8 +81,8 @@ services:
       MONGO_INITDB_ROOT_USERNAME: yawik
       MONGO_INITDB_ROOT_PASSWORD: yawik
     volumes:
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      - ./var/mongo/data:/data/db
+      - ./var/mongo/data:/data/db:rw
+      - ./docker/mongo:/dump:rw
     ports:
       - "27017:27017"
 
